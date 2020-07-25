@@ -7,6 +7,8 @@
 #ifndef ABB_ABB_H
 #define ABB_ABB_H
 
+using namespace std;
+
 template <class T>
 class ABB
 {
@@ -16,7 +18,7 @@ private:
     NodoABB<T>* raiz;
 
     // metodos
-    NodoABB<T>* insertar(NodoABB<T>* nodo, T dato);
+    NodoABB<T>* insertar(NodoABB<T>* nodo, T dato, T* valor);
     void imprimir_en_orden(NodoABB<T> * nodo);
     NodoABB<T>* buscar(NodoABB<T>* nodo, T dato);
     T buscar_min(NodoABB<T>* nodo);
@@ -33,7 +35,7 @@ public:
 
     // Post: Agrega un nodo con dato al arbol. Si el nodo esta vacio
     // 		 se asigna como la raiz del arbol
-    void insertar(T dato);
+    void insertar(T dato, T* valor);
 
     // Post: Imprime los datos almacenados en el ABB, de menor a mayor
     void imprimir_en_orden();
@@ -77,7 +79,7 @@ ABB<T>::ABB() {
 }
 
 template <class T>
-NodoABB<T>* ABB<T>::insertar(NodoABB<T>* nodo, T dato) {
+NodoABB<T>* ABB<T>::insertar(NodoABB<T>* nodo, T dato, T* valor) {
 
     if (nodo == NULL) {
         nodo = new NodoABB<T>(dato);
@@ -94,9 +96,9 @@ NodoABB<T>* ABB<T>::insertar(NodoABB<T>* nodo, T dato) {
 }
 
 template <class T>
-void ABB<T>::insertar(T dato)
+void ABB<T>::insertar(T dato, T* valor)
 {
-    this->raiz = insertar(this->raiz, dato);
+    this->raiz = insertar(this->raiz, dato, valor);
 }
 
 template <class T>
@@ -105,7 +107,8 @@ void ABB<T>::imprimir_en_orden(NodoABB<T>* nodo)
     if (nodo != NULL)
     {
         imprimir_en_orden(nodo->obtener_izquierda());
-        std::cout<<nodo->obtener_dato()<<' ';
+        cout << nodo -> obtener_dato()<<' ';
+        cout << nodo -> obtener_valor() << endl;
         imprimir_en_orden(nodo->obtener_derecha());
     }
 }

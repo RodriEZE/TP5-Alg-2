@@ -9,14 +9,16 @@ class NodoABB
 private:
 
     T dato;
+    T* valor;
     NodoABB<T>* izquierda; //Hijo izquierdo
     NodoABB<T>* derecha; //Hijo derecho
     NodoABB<T>* padre;
 
 public:
 
-    NodoABB(T d);
+    NodoABB(T d, T* valor);
     T obtener_dato();
+    T* obtener_valor();
     void asignar_dato(T d);
     void asignar_derecha(NodoABB<T>* derecha, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda, NodoABB<T>* padre);
@@ -32,9 +34,10 @@ public:
 };
 
 template <class T>
-NodoABB<T>::NodoABB(T dato)
+NodoABB<T>::NodoABB(T dato, T* valor)
 {
     this->dato = dato;
+    this->valor = valor;
     this->izquierda = NULL;
     this->derecha = NULL;
     this->padre = NULL;
