@@ -6,11 +6,15 @@
  */
 
 #include "ABB.h"
+#include "Archivo.h"
 
 using namespace std;
 
 int main(){
 
+	Archivo archivo;
+
+	archivo.cargar_arbol();
 	return 0;
 }
 

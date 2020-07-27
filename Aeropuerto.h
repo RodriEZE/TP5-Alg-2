@@ -44,8 +44,6 @@ public:
 	unsigned obtener_internacional();
 	unsigned obtener_nacional();
 
-
-
 };
 
 #endif /* AEROPUERTO_H_ */

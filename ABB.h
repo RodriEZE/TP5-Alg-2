@@ -197,7 +197,6 @@ template <class T>
 T ABB<T>::sucesor(T dato)
 {
     NodoABB<T>* dato_nodo = this->buscar(this->raiz, dato);
-    // Return the key. If the key is not found or sucesor is not found, return -1
     if(dato_nodo == NULL)
         return -1;
     else return sucesor(dato_nodo);
@@ -215,7 +214,7 @@ T ABB<T>::predecesor(NodoABB<T> * nodo)
     NodoABB<T>* ancestor = this->raiz;
     while(ancestor != nodo) {
         if(nodo->obtener_dato() > ancestor->obtener_dato()) {
-            sucesor = ancestor; // so far this is the deepest nodo for which current nodo is in izquierda
+            sucesor = ancestor;
             ancestor = ancestor->obtener_derecha();
         }
         else
@@ -247,33 +246,25 @@ NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, T dato)
             delete nodo;
         else if (nodo->derechaChildOnly())
         {
-            // The only child will be connected to the parent's of nodo directly
             nodo->obtener_derecha()->asignar_parent(nodo->obtener_parent());
-            // Bypass nodo
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_derecha();
             delete aux;
         }
         else if (nodo->izquierdaChildOnly())
         {
-            // The only child will be connected to the parent's of nodo directly
             nodo->obtener_izquierda()->asignar_parent(nodo->obtener_parent());
-            // Bypass nodo
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_izquierda();
             delete aux;
         }
 
-        // The nodo has two children (izquierda and derecha)
         else
         {
-            // buscar sucesor or predecesor to avoid quarrel
             T sucesor_dato = this->sucesor(dato);
 
-            // Replace nodo's key with sucesor's key
             nodo->asignar_dato(sucesor_dato);
 
-            // Delete the old sucesor's key
             nodo->asignar_derecha(eliminar(nodo->obtener_derecha(), sucesor_dato));
         }
     }

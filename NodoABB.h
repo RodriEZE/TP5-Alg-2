@@ -3,6 +3,10 @@
 #ifndef ABB_NodoABB_H
 #define ABB_NodoABB_H
 
+#include <iostream>
+
+using namespace std;
+
 template <class T>
 class NodoABB
 {

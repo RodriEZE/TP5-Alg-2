@@ -28,7 +28,7 @@ void Aeropuerto::asignar_pais(string p){
 	this->pais = p;
 }
 
-void Aeropuerto::asignar_ciudad(string n){
+void Aeropuerto::asignar_nombre(string n){
 	this->nombre = n;
 }
 
