@@ -12,7 +12,7 @@ class NodoABB
 {
 private:
 
-    T dato;
+    string dato;
     T* valor;
     NodoABB<T>* izquierda; //Hijo izquierdo
     NodoABB<T>* derecha; //Hijo derecho
@@ -20,10 +20,10 @@ private:
 
 public:
 
-    NodoABB(T d, T* valor);
-    T obtener_dato();
+    NodoABB(string d, T* valor);
+    string obtener_dato();
     T* obtener_valor();
-    void asignar_dato(T d);
+    void asignar_dato(string d);
     void asignar_derecha(NodoABB<T>* derecha, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda);
@@ -35,10 +35,11 @@ public:
     bool es_hoja();
     bool solo_hijo_derecha();
     bool solo_hijo_izquierda();
+    ~NodoABB();
 };
 
 template <class T>
-NodoABB<T>::NodoABB(T dato, T* valor)
+NodoABB<T>::NodoABB(string dato, T* valor)
 {
     this->dato = dato;
     this->valor = valor;
@@ -48,9 +49,15 @@ NodoABB<T>::NodoABB(T dato, T* valor)
 }
 
 template <class T>
-T NodoABB<T>::obtener_dato()
+string NodoABB<T>::obtener_dato()
 {
     return this->dato;
+}
+
+template <class T>
+T* NodoABB<T>::obtener_valor()
+{
+    return this->valor;
 }
 
 template <class T>
@@ -76,7 +83,7 @@ void NodoABB<T>::asignar_padre(NodoABB<T> *padre) {
 }
 
 template <class T>
-void NodoABB<T>::asignar_dato(T dato) {
+void NodoABB<T>::asignar_dato(string dato) {
     this->dato = dato;
 }
 
@@ -117,6 +124,11 @@ bool NodoABB<T>::solo_hijo_derecha() {
 template <class T>
 bool NodoABB<T>::solo_hijo_izquierda() {
     return (this->obtener_izquierda() != NULL && this->obtener_derecha() == NULL);
+}
+
+template <class T>
+NodoABB<T>::~NodoABB(){
+	delete valor;
 }
 
 #endif //ABB_NodoABB_H

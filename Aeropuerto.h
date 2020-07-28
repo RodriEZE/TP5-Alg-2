@@ -43,6 +43,8 @@ public:
 	unsigned obtener_terminales();
 	unsigned obtener_internacional();
 	unsigned obtener_nacional();
+	void imprimir_datos();
+	~Aeropuerto();
 
 };
 

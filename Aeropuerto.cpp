@@ -76,4 +76,10 @@ unsigned Aeropuerto::obtener_terminales(){
 	return this->cant_terminales;
 }
 
+void Aeropuerto::imprimir_datos(){
+	cout << nombre << " " << ciudad << " " << pais << " " << superficie << " " << cant_terminales << " " << dest_nacionales << " " << dest_internacionales << endl;
+}
+
+Aeropuerto::~Aeropuerto(){
+}
 

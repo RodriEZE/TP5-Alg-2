@@ -18,14 +18,14 @@ private:
     NodoABB<T>* raiz;
 
     // metodos
-    NodoABB<T>* insertar(NodoABB<T>* nodo, T dato, T* valor);
+    NodoABB<T>* insertar(NodoABB<T>* nodo, string dato, T* valor);
     void imprimir_en_orden(NodoABB<T> * nodo);
-    NodoABB<T>* buscar(NodoABB<T>* nodo, T dato);
+    NodoABB<T>* buscar(NodoABB<T>* nodo, string dato);
     T buscar_min(NodoABB<T>* nodo);
     T buscar_max(NodoABB<T>* nodo);
     T sucesor(NodoABB<T>* nodo);
     T predecesor(NodoABB<T>* nodo);
-    NodoABB<T>* eliminar(NodoABB<T>* nodo, T dato);
+    NodoABB<T>* eliminar(NodoABB<T>* nodo, string dato);
     void eliminar_todo(NodoABB<T>* nodo);
 
 public:
@@ -35,13 +35,13 @@ public:
 
     // Post: Agrega un nodo con dato al arbol. Si el nodo esta vacio
     // 		 se asigna como la raiz del arbol
-    void insertar(T dato, T* valor);
+    void insertar(string dato, T* valor);
 
     // Post: Imprime los datos almacenados en el ABB, de menor a mayor
     void imprimir_en_orden();
 
     // Post: Busca un dato concreto en el arbol, si encuentra devuelve true.
-    bool buscar(T dato);
+    bool buscar(string dato);
 
     // Post: Busca el valor minimo en el ABB
     T buscar_min();
@@ -50,13 +50,13 @@ public:
     T buscar_max();
 
     // Post: Busca el sucesor de un dato concreto en el ABB
-    T sucesor(T dato);
+    T sucesor(string dato);
 
     // Post: Busca el predecesor de un dato concreto en el ABB
-    T predecesor(T dato);
+    T predecesor(string dato);
 
     // Post: Elimina un dato concreto del ABB
-    void eliminar(T dato);
+    void eliminar(string dato);
 
     // Post: devuelve la raiz del arbol
     NodoABB<T>* obtener_raiz();
@@ -79,24 +79,24 @@ ABB<T>::ABB() {
 }
 
 template <class T>
-NodoABB<T>* ABB<T>::insertar(NodoABB<T>* nodo, T dato, T* valor) {
+NodoABB<T>* ABB<T>::insertar(NodoABB<T>* nodo, string dato, T* valor) {
 
     if (nodo == NULL) {
-        nodo = new NodoABB<T>(dato);
+        nodo = new NodoABB<T>(dato, valor);
     }
 
     else if (dato > nodo->obtener_dato()) {
-        nodo->asignar_derecha(insertar(nodo->obtener_derecha(), dato), nodo);
+        nodo->asignar_derecha(insertar(nodo->obtener_derecha(), dato, valor), nodo);
     }
 
     else {
-        nodo->asignar_izquierda(insertar(nodo->obtener_izquierda(), dato), nodo);
+        nodo->asignar_izquierda(insertar(nodo->obtener_izquierda(), dato, valor), nodo);
     }
     return nodo;
 }
 
 template <class T>
-void ABB<T>::insertar(T dato, T* valor)
+void ABB<T>::insertar(string dato, T* valor)
 {
     this->raiz = insertar(this->raiz, dato, valor);
 }
@@ -108,7 +108,8 @@ void ABB<T>::imprimir_en_orden(NodoABB<T>* nodo)
     {
         imprimir_en_orden(nodo->obtener_izquierda());
         cout << nodo -> obtener_dato()<<' ';
-        cout << nodo -> obtener_valor() << endl;
+        T* aux = nodo->obtener_valor();
+        aux->imprimir_datos();
         imprimir_en_orden(nodo->obtener_derecha());
     }
 }
@@ -120,7 +121,7 @@ void ABB<T>::imprimir_en_orden()
 }
 
 template <class T>
-NodoABB<T>* ABB<T>::buscar(NodoABB<T>* nodo, T dato)
+NodoABB<T>* ABB<T>::buscar(NodoABB<T>* nodo, string dato)
 {
     if (nodo == NULL || nodo->obtener_dato() == dato)
         return nodo;
@@ -132,11 +133,11 @@ NodoABB<T>* ABB<T>::buscar(NodoABB<T>* nodo, T dato)
 }
 
 template <class T>
-bool ABB<T>::buscar(T dato)
+bool ABB<T>::buscar(string dato)
 {
-    NodoABB<T>* result = buscar(this->raiz, dato);
+    NodoABB<T>* buscado = buscar(this->raiz, dato);
 
-    return result != NULL;
+    return buscado != NULL;
 }
 
 template <class T>
@@ -181,20 +182,20 @@ T ABB<T>::sucesor(NodoABB<T>* nodo)
         return buscar_min(nodo->obtener_derecha());
     }
     NodoABB<T>* sucesor = NULL;
-    NodoABB<T>* ancestor = this->raiz;
-    while(ancestor != nodo) {
-        if(nodo->obtener_dato() < ancestor->obtener_dato()) {
-            sucesor = ancestor;
-            ancestor = ancestor->obtener_izquierda();
+    NodoABB<T>* ancesor = this->raiz;
+    while(ancesor != nodo) {
+        if(nodo->obtener_dato() < ancesor->obtener_dato()) {
+            sucesor = ancesor;
+            ancesor = ancesor->obtener_izquierda();
         }
         else
-            ancestor = ancestor->obtener_derecha();
+            ancesor = ancesor->obtener_derecha();
     }
     return sucesor->obtener_dato();
 }
 
 template <class T>
-T ABB<T>::sucesor(T dato)
+T ABB<T>::sucesor(string dato)
 {
     NodoABB<T>* dato_nodo = this->buscar(this->raiz, dato);
     if(dato_nodo == NULL)
@@ -211,20 +212,20 @@ T ABB<T>::predecesor(NodoABB<T> * nodo)
     }
 
     NodoABB<T>* sucesor = NULL;
-    NodoABB<T>* ancestor = this->raiz;
-    while(ancestor != nodo) {
-        if(nodo->obtener_dato() > ancestor->obtener_dato()) {
-            sucesor = ancestor;
-            ancestor = ancestor->obtener_derecha();
+    NodoABB<T>* ancesor = this->raiz;
+    while(ancesor != nodo) {
+        if(nodo->obtener_dato() > ancesor->obtener_dato()) {
+            sucesor = ancesor;
+            ancesor = ancesor->obtener_derecha();
         }
         else
-            ancestor = ancestor->obtener_izquierda();
+            ancesor = ancesor->obtener_izquierda();
     }
     return sucesor->obtener_dato();
 }
 
 template <class T>
-T ABB<T>::predecesor(T dato)
+T ABB<T>::predecesor(string dato)
 {
     NodoABB<T> * dato_nodo = this->buscar(this->raiz, dato);
 
@@ -234,9 +235,8 @@ T ABB<T>::predecesor(T dato)
 }
 
 template <class T>
-NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, T dato)
+NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, string dato)
 {
-    // The given nodo is not found in ABB
     if (nodo == NULL)
         return NULL;
 
@@ -244,16 +244,16 @@ NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, T dato)
     {
         if (nodo->isLeaf())
             delete nodo;
-        else if (nodo->derechaChildOnly())
+        else if (nodo->solo_hijo_derecha())
         {
-            nodo->obtener_derecha()->asignar_parent(nodo->obtener_parent());
+            nodo->obtener_derecha()->asignar_parent(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_derecha();
             delete aux;
         }
-        else if (nodo->izquierdaChildOnly())
+        else if (nodo->solo_hijo_izquierda())
         {
-            nodo->obtener_izquierda()->asignar_parent(nodo->obtener_parent());
+            nodo->obtener_izquierda()->asignar_parent(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_izquierda();
             delete aux;
@@ -279,7 +279,7 @@ NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, T dato)
 }
 
 template <class T>
-void ABB<T>::eliminar(T dato)
+void ABB<T>::eliminar(string dato)
 {
     this->raiz = eliminar(this->raiz, dato);
 }
@@ -313,9 +313,9 @@ void ABB<T>::eliminar_todo()
 }
 
 template <class T>
-ABB<T>::~ABB<T>()
+ABB<T>::~ABB()
 {
-    eliminar_todo();
+    this->eliminar_todo();
 }
 
 
