@@ -128,6 +128,7 @@ void Menu::ingresar_aeropuerto(string clave){
 	cout << "Destinos internacionales: " << endl;
 	cin >> dest_internacionales;
 
+
 	Aeropuerto* aero = new Aeropuerto(nombre, ciudad, pais, superficie, cant_terminales, dest_nacionales, dest_internacionales);
 
 	arbol->insertar(clave, aero);
