@@ -80,8 +80,8 @@ void Menu::consultar_aeropuerto(){
 }
 
 void Menu::mostrar_aeropuerto(NodoABB<Aeropuerto>* nodo){
-	Aeropuerto *valor = nodo->obtener_valor();
 
+	Aeropuerto *valor = nodo->obtener_valor();
 	cout << nodo->obtener_dato() << " ";
 	valor->imprimir_datos() ;
 
@@ -89,6 +89,7 @@ void Menu::mostrar_aeropuerto(NodoABB<Aeropuerto>* nodo){
 
 void Menu::agregar_aeropuerto(){
 	string clave;
+
 	cout << "Ingrese el código IATA del aeropuerto que desea AGREGAR: " << endl;
 	cin >> clave;
 
@@ -109,17 +110,21 @@ void Menu::ingresar_aeropuerto(string clave){
 	unsigned cant_terminales, dest_nacionales, dest_internacionales;
 
 	cout << "Ingrese: " << endl;
-
 	cout << "Nombre del Aeropuerto: " << endl;
 	cin >> nombre;
+
 	cout << "Nombre de la ciudad: " << endl;
 	cin >> ciudad;
+
 	cout << "Superficie: " << endl;
 	cin >> superficie;
+
 	cout << "Cantidad de terminales: " << endl;
 	cin >> cant_terminales;
+
 	cout << "Destinos nacionales: " << endl;
 	cin >> dest_nacionales;
+
 	cout << "Destinos internacionales: " << endl;
 	cin >> dest_internacionales;
 
