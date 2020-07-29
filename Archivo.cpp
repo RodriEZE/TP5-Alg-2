@@ -9,10 +9,9 @@
 
 Archivo::Archivo(){
 	archivo_aeropuertos.open(ARCHIVO_AERO);
-	arbol = new ABB<Aeropuerto>();
 }
 
-void Archivo::cargar_arbol(){
+void Archivo::cargar_arbol(ABB<Aeropuerto>* arbol){
 
 	while(!archivo_aeropuertos.eof()){
 		archivo_aeropuertos >> codigo;
@@ -29,11 +28,6 @@ void Archivo::cargar_arbol(){
 		arbol->insertar(codigo, aero);
 	}
 
-	arbol->imprimir_en_orden();
-
 }
 
-Archivo::~Archivo(){
-	delete arbol;
-}
 

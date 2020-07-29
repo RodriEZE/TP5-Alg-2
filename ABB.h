@@ -41,7 +41,7 @@ public:
     void imprimir_en_orden();
 
     // Post: Busca un dato concreto en el arbol, si encuentra devuelve true.
-    bool buscar(string dato);
+    NodoABB<T>* buscar(string dato);
 
     // Post: Busca el valor minimo en el ABB
     T buscar_min();
@@ -133,11 +133,11 @@ NodoABB<T>* ABB<T>::buscar(NodoABB<T>* nodo, string dato)
 }
 
 template <class T>
-bool ABB<T>::buscar(string dato)
+NodoABB<T>* ABB<T>::buscar(string dato)
 {
     NodoABB<T>* buscado = buscar(this->raiz, dato);
 
-    return buscado != NULL;
+    return buscado;
 }
 
 template <class T>

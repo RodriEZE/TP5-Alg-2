@@ -7,14 +7,16 @@
 
 #include "ABB.h"
 #include "Archivo.h"
+#include "Menu.h"
 
 using namespace std;
 
 int main(){
 
-	Archivo archivo;
+	Menu menu;
 
-	archivo.cargar_arbol();
+	menu.iniciar();
+
 	return 0;
 }
 

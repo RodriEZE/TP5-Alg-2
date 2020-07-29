@@ -23,7 +23,6 @@ private:
 	float superficie;
 	unsigned cant_terminales, dest_nacionales, dest_internacionales;
 	ifstream archivo_aeropuertos;
-	ABB<Aeropuerto>* arbol;
 
 public:
 	/*
@@ -36,13 +35,7 @@ public:
 	 * PRE: -
 	 * POST: Lee los datos del atributo archivo_aeropuertos y los inserta en el arbol
 	 */
-	void cargar_arbol();
-
-	/*
-	 * PRE: Existe el objeto archivo
-	 * POST: Elimina el objeto
-	 */
-	~Archivo();
+	void cargar_arbol(ABB<Aeropuerto>* arbol);
 
 };
 
