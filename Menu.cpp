@@ -44,11 +44,11 @@ void Menu::realizar_accion(int num){
 				agregar_aeropuerto();
 				break;
 
-/*
+
 		case 3:
 				eliminar_aeropuerto();
 				break;
-*/
+
 		case 4:
 				arbol->imprimir_en_orden();
 				break;
@@ -134,7 +134,7 @@ void Menu::ingresar_aeropuerto(string clave){
 	arbol->insertar(clave, aero);
 }
 
-/*
+
 void Menu::eliminar_aeropuerto(){
 	string clave;
 
@@ -144,12 +144,12 @@ void Menu::eliminar_aeropuerto(){
 	NodoABB<Aeropuerto>* nodo = arbol -> buscar(clave);
 
 	if( nodo != NULL){
-		arbol->eliminar(nodo->obtener_dato(), nodo->obtener_valor());
+		arbol->eliminar(clave);
 	}
 	else{
 		cout << "Error, el codigo ingresado NO EXISTE" << endl;
 	}
 
 }
-*/
+
 

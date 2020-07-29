@@ -3,6 +3,7 @@
 #include<iostream>
 
 #include "NodoABB.h"
+#include <string.h>
 
 #ifndef ABB_ABB_H
 #define ABB_ABB_H
@@ -21,9 +22,9 @@ private:
     NodoABB<T>* insertar(NodoABB<T>* nodo, string dato, T* valor);
     void imprimir_en_orden(NodoABB<T> * nodo);
     NodoABB<T>* buscar(NodoABB<T>* nodo, string dato);
-    T buscar_min(NodoABB<T>* nodo);
+    string buscar_min(NodoABB<T>* nodo);
     T buscar_max(NodoABB<T>* nodo);
-    T sucesor(NodoABB<T>* nodo);
+    string sucesor(NodoABB<T>* nodo);
     T predecesor(NodoABB<T>* nodo);
     NodoABB<T>* eliminar(NodoABB<T>* nodo, string dato);
     void eliminar_todo(NodoABB<T>* nodo);
@@ -44,13 +45,13 @@ public:
     NodoABB<T>* buscar(string dato);
 
     // Post: Busca el valor minimo en el ABB
-    T buscar_min();
+    string buscar_min();
 
     // Post: Busca el valor maximo en el ABB
     T buscar_max();
 
     // Post: Busca el sucesor de un dato concreto en el ABB
-    T sucesor(string dato);
+    string sucesor(string dato);
 
     // Post: Busca el predecesor de un dato concreto en el ABB
     T predecesor(string dato);
@@ -140,19 +141,21 @@ NodoABB<T>* ABB<T>::buscar(string dato)
     return buscado;
 }
 
+
 template <class T>
-T ABB<T>::buscar_min(NodoABB<T>* nodo)
+string ABB<T>::buscar_min(NodoABB<T>* nodo)
 {
+	string error = "error";
     if(nodo == NULL)
-        return -1;
-    else if(nodo->obtener_izquierda() == NULL)
+        return error;
+    if(nodo->obtener_izquierda() == NULL)
         return nodo->obtener_dato();
     else
         return buscar_min(nodo->obtener_izquierda());
 }
 
 template <class T>
-T ABB<T>::buscar_min()
+string ABB<T>::buscar_min()
 {
     return buscar_min(this->raiz);
 }
@@ -162,7 +165,7 @@ T ABB<T>::buscar_max(NodoABB<T>* nodo)
 {
     if(nodo == NULL)
         return -1;
-    else if(nodo->obtener_derecha() == NULL)
+    if(nodo->obtener_derecha() == NULL)
         return nodo->obtener_dato();
     else
         return buscar_max(nodo->obtener_derecha());
@@ -175,7 +178,7 @@ T ABB<T>::buscar_max()
 }
 
 template <class T>
-T ABB<T>::sucesor(NodoABB<T>* nodo)
+string ABB<T>::sucesor(NodoABB<T>* nodo)
 {
     if (nodo->obtener_derecha() != NULL)
     {
@@ -195,12 +198,14 @@ T ABB<T>::sucesor(NodoABB<T>* nodo)
 }
 
 template <class T>
-T ABB<T>::sucesor(string dato)
+string ABB<T>::sucesor(string dato)
 {
+	string error = "error";
     NodoABB<T>* dato_nodo = this->buscar(this->raiz, dato);
     if(dato_nodo == NULL)
-        return -1;
-    else return sucesor(dato_nodo);
+        return error;
+     return sucesor(dato_nodo);
+
 }
 
 template <class T>
@@ -242,18 +247,18 @@ NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, string dato)
 
     if (nodo->obtener_dato() == dato)
     {
-        if (nodo->isLeaf())
+        if (nodo->es_hoja())
             delete nodo;
         else if (nodo->solo_hijo_derecha())
         {
-            nodo->obtener_derecha()->asignar_parent(nodo->obtener_padre());
+            nodo->obtener_derecha()->asignar_padre(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_derecha();
             delete aux;
         }
         else if (nodo->solo_hijo_izquierda())
         {
-            nodo->obtener_izquierda()->asignar_parent(nodo->obtener_padre());
+            nodo->obtener_izquierda()->asignar_padre(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_izquierda();
             delete aux;
@@ -261,7 +266,7 @@ NodoABB<T> * ABB<T>::eliminar(NodoABB<T>* nodo, string dato)
 
         else
         {
-            T sucesor_dato = this->sucesor(dato);
+            string sucesor_dato = this->sucesor(dato);
 
             nodo->asignar_dato(sucesor_dato);
 
