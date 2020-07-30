@@ -3,7 +3,7 @@
 
 Menu::Menu(){
 	arbol = new ABB<Aeropuerto>();
-	archivo.cargar_arbol(arbol); //le paso el arbol dsps cambiadno tmb en archivo
+	archivo.cargar_arbol(arbol);
 }
 
 Menu::~Menu(){
@@ -26,7 +26,7 @@ void Menu::seleccionar_opcion(int &num){
 	cout << "\t(2) Agregar un nuevo aeropuerto" << endl;
 	cout << "\t(3) Eliminar un aeropuerto" << endl;
 	cout << "\t(4) Mostrar todos los aeropuertos ordenados" << endl;
-	cout << "\t(5) Mostrar todos los aeropuertos en ancho" << endl;
+	cout << "\t(5) Mostrar todos los aeropuertos por nivel" << endl;
 	cout << "\t(6) Finalizar la aplicacion" << endl;
 	cout << "---------------------------------------" << endl;
 	cin >> num;
@@ -55,7 +55,7 @@ void Menu::realizar_accion(int num){
 
 /*
 		case 5:
-				mostrar_aeropuertos_en_ancho();
+				mostrar_aeropuertos_por_nivel();
 				break;
 */
 		case 6:
@@ -82,7 +82,7 @@ void Menu::consultar_aeropuerto(){
 void Menu::mostrar_aeropuerto(NodoABB<Aeropuerto>* nodo){
 
 	Aeropuerto *valor = nodo->obtener_valor();
-	cout << nodo->obtener_dato() << " ";
+	cout << nodo->obtener_clave() << " ";
 	valor->imprimir_datos() ;
 
 }

@@ -29,7 +29,7 @@ class Menu{
 
 		void iniciar();
 
-		void seleccionar_opcion(int&);
+		void seleccionar_opcion(int& op);
 
 		void realizar_accion(int num);
 
@@ -37,13 +37,13 @@ class Menu{
 
 		void agregar_aeropuerto();
 
-		void ingresar_aeropuerto(string);
+		void ingresar_aeropuerto(string );
 
 		void eliminar_aeropuerto();
 
 		void mostrar_aeropuerto(NodoABB<Aeropuerto>*);
 
-		void mostrar_aeropuertos_en_ancho();
+		void mostrar_aeropuertos_por_nivel();
 
 		~Menu();
 };

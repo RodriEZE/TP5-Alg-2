@@ -12,7 +12,7 @@ class NodoABB
 {
 private:
 
-    string dato;
+    string clave;
     T* valor;
     NodoABB<T>* izquierda; //Hijo izquierdo
     NodoABB<T>* derecha; //Hijo derecho
@@ -20,10 +20,10 @@ private:
 
 public:
 
-    NodoABB(string d, T* valor);
-    string obtener_dato();
+    NodoABB(string s, T* valor);
+    string obtener_clave();
     T* obtener_valor();
-    void asignar_dato(string d);
+    void asignar_clave(string c);
     void asignar_derecha(NodoABB<T>* derecha, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda);
@@ -39,9 +39,9 @@ public:
 };
 
 template <class T>
-NodoABB<T>::NodoABB(string dato, T* valor)
+NodoABB<T>::NodoABB(string clave, T* valor)
 {
-    this->dato = dato;
+    this->clave = clave;
     this->valor = valor;
     this->izquierda = NULL;
     this->derecha = NULL;
@@ -49,9 +49,9 @@ NodoABB<T>::NodoABB(string dato, T* valor)
 }
 
 template <class T>
-string NodoABB<T>::obtener_dato()
+string NodoABB<T>::obtener_clave()
 {
-    return this->dato;
+    return this->clave;
 }
 
 template <class T>
@@ -83,8 +83,8 @@ void NodoABB<T>::asignar_padre(NodoABB<T> *padre) {
 }
 
 template <class T>
-void NodoABB<T>::asignar_dato(string dato) {
-    this->dato = dato;
+void NodoABB<T>::asignar_clave(string clave) {
+    this->clave = clave;
 }
 
 
