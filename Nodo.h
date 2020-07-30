@@ -1,10 +1,3 @@
-/*
- * Nodo.h
- *
- *  Created on: 30 jul. 2020
- *      Author: Luz M. Diaz
- */
-
 #ifndef NODO_H_
 #define NODO_H_
 
