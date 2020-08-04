@@ -3,7 +3,8 @@
 
 Menu::Menu(){
 	arbol = new ABB<Aeropuerto>();
-	archivo.cargar_arbol(arbol);
+	archivo_aeropuerto.cargar_arbol(arbol);
+	archivo_vuelos.leer_archivo();
 }
 
 Menu::~Menu(){
@@ -12,10 +13,43 @@ Menu::~Menu(){
 
 void Menu::iniciar(){
 	int num;
+	cout << "Aeropuertos (1), Grafos (2)" << endl;
+	cin >> num;
+	if(num == 1)
+		comenzar_aeropuertos();
+	else
+		comenzar_vuelos();
+}
+
+void Menu::comenzar_aeropuertos(){
+	int num;
 
 	while( num != FINALIZAR_APLICACION){
 		seleccionar_opcion(num);
 		realizar_accion(num);
+	}
+}
+
+void Menu::comenzar_vuelos(){
+	int num;
+	string origen, destino;
+	cout << "Para imprimir el grafo (1), para eliminar una arista(2), para hallar un vuelo (3)" << endl;
+	cin >> num;
+	if(num == 1){
+		archivo_vuelos.imprimir_grafo();
+	}
+	else if(num == 2){
+		cout << "Ingrese origen" << endl;
+		cin >> origen;
+		cout << "Ingrese destino" << endl;
+		cin >> destino;
+		archivo_vuelos.eliminar_arista(origen, destino);
+	} else {
+		cout << "Ingrese origen" << endl;
+		cin >> origen;
+		cout << "Ingrese destino" << endl;
+		cin >> destino;
+		archivo_vuelos.buscar_vuelo(origen, destino);
 	}
 }
 

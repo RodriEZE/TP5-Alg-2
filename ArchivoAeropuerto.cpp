@@ -1,17 +1,11 @@
-/*
- * Archivo.cpp
- *
- *  Created on: 25 jul. 2020
- *      Author: carolina
- */
 
-#include "Archivo.h"
+#include "ArchivoAeropuerto.h"
 
-Archivo::Archivo(){
+ArchivoAeropuerto::ArchivoAeropuerto(){
 	archivo_aeropuertos.open(ARCHIVO_AERO);
 }
 
-void Archivo::cargar_arbol(ABB<Aeropuerto>* arbol){
+void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto>* arbol){
 
 	while(!archivo_aeropuertos.eof()){
 		archivo_aeropuertos >> codigo;

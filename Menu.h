@@ -9,10 +9,12 @@
 #define MENU_H_
 
 #include <iostream>
-#include "Archivo.h"
 #include "Aeropuerto.h"
 #include "ABB.h"
+#include "ArchivoAeropuerto.h"
 #include "NodoABB.h"
+#include "ArchivoVuelos.h"
+
 
 using namespace std;
 
@@ -21,7 +23,8 @@ const int FINALIZAR_APLICACION = 6;
 class Menu{
 	private:
 
-		Archivo archivo;
+		ArchivoAeropuerto archivo_aeropuerto;
+		ArchivoVuelos archivo_vuelos;
 		ABB<Aeropuerto>* arbol;
 
 	public:
@@ -44,6 +47,10 @@ class Menu{
 		void mostrar_aeropuerto(NodoABB<Aeropuerto>*);
 
 		void mostrar_aeropuertos_por_nivel();
+
+		void comenzar_aeropuertos();
+
+		void comenzar_vuelos();
 
 		~Menu();
 };

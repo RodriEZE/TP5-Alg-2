@@ -1,12 +1,5 @@
-/*
- * Archivo.h
- *
- *  Created on: 25 jul. 2020
- *      Author: carolina
- */
-
-#ifndef ARCHIVO_H_
-#define ARCHIVO_H_
+#ifndef ARCHIVOAEROPUERTO_H_
+#define ARCHIVOAEROPUERTO_H_
 
 #include <iostream>
 #include <fstream>
@@ -17,7 +10,7 @@ using namespace std;
 
 const string ARCHIVO_AERO = "aeropuertos.txt";
 
-class Archivo{
+class ArchivoAeropuerto{
 private:
 	string nombre, ciudad, pais, codigo;
 	float superficie;
@@ -27,9 +20,9 @@ private:
 public:
 	/*
 	 * PRE: -
-	 * POST: Crea un objeto de tipo Archivo
+	 * POST: Crea un objeto de tipo ArchivoAeropuertos
 	 */
-	Archivo();
+	ArchivoAeropuerto();
 
 	/*
 	 * PRE: -
@@ -41,4 +34,4 @@ public:
 
 
 
-#endif /* ARCHIVO_H_ */
+#endif /* ARCHIVOAEROPUERTO_H_ */

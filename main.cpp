@@ -6,7 +6,7 @@
  */
 
 #include "ABB.h"
-#include "Archivo.h"
+#include "ArchivoAeropuerto.h"
 #include "Menu.h"
 
 using namespace std;
