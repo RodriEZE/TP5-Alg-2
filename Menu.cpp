@@ -13,7 +13,7 @@ Menu::~Menu(){
 
 void Menu::iniciar(){
 	int num;
-	cout << "Aeropuertos (1), Grafos (2)" << endl;
+	cout << "Aeropuertos (1), Grafos (2) " << endl;
 	cin >> num;
 	if(num == 1)
 		comenzar_aeropuertos();
