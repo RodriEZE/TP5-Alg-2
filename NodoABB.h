@@ -13,17 +13,19 @@ class NodoABB
 private:
 
     string clave;
-    T* valor;
+    T valor;
     NodoABB<T>* izquierda; //Hijo izquierdo
     NodoABB<T>* derecha; //Hijo derecho
     NodoABB<T>* padre;
+    bool copiado;
 
 public:
 
-    NodoABB(string s, T* valor);
+    NodoABB(string s, T valor);
     string obtener_clave();
-    T* obtener_valor();
+    T obtener_valor();
     void asignar_clave(string c);
+    void asignar_valor(T v);
     void asignar_derecha(NodoABB<T>* derecha, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda, NodoABB<T>* padre);
     void asignar_izquierda(NodoABB<T>* izquierda);
@@ -35,17 +37,20 @@ public:
     bool es_hoja();
     bool solo_hijo_derecha();
     bool solo_hijo_izquierda();
+    void fue_copiado();
+    bool es_copiado();
     ~NodoABB();
 };
 
 template <class T>
-NodoABB<T>::NodoABB(string clave, T* valor)
+NodoABB<T>::NodoABB(string clave, T valor)
 {
     this->clave = clave;
     this->valor = valor;
     this->izquierda = NULL;
     this->derecha = NULL;
     this->padre = NULL;
+    this->copiado = false;
 }
 
 template <class T>
@@ -55,7 +60,7 @@ string NodoABB<T>::obtener_clave()
 }
 
 template <class T>
-T* NodoABB<T>::obtener_valor()
+T NodoABB<T>::obtener_valor()
 {
     return this->valor;
 }
@@ -87,6 +92,10 @@ void NodoABB<T>::asignar_clave(string clave) {
     this->clave = clave;
 }
 
+template <class T>
+void NodoABB<T>::asignar_valor(T valor) {
+    this->valor = valor;
+}
 
 template <class T>
 void NodoABB<T>::asignar_izquierda(NodoABB<T>* izquierda){
@@ -127,7 +136,20 @@ bool NodoABB<T>::solo_hijo_izquierda() {
 }
 
 template <class T>
+bool NodoABB<T>::es_copiado() {
+
+	return copiado;
+}
+
+template <class T>
+void NodoABB<T>::fue_copiado(){
+    this->copiado = true;
+}
+
+template <class T>
 NodoABB<T>::~NodoABB(){
+
+	//if(copiado) this->valor = NULL;
 	delete valor;
 }
 
