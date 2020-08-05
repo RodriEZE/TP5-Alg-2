@@ -276,7 +276,11 @@ NodoABB<T>* ABB<T>::eliminar(NodoABB<T>* nodo, string clave)
         		nodo->asignar_valor(NULL);
         		delete nodo;
         		nodo = NULL;
-        	}else delete nodo;
+        	}else{
+        		delete nodo;
+        		nodo = NULL;
+        	}
+
         else if (nodo->solo_hijo_derecha())
         {
             nodo->obtener_derecha()->asignar_padre(nodo->obtener_padre());
