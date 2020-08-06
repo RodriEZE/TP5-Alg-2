@@ -28,7 +28,7 @@ public:
 	 * PRE: -
 	 * POST: Lee los datos del atributo archivo_aeropuertos y los inserta en el arbol
 	 */
-	void cargar_arbol(ABB<Aeropuerto>* arbol);
+	void cargar_arbol(ABB<Aeropuerto*>* arbol);
 
 };
 

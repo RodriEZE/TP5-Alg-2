@@ -5,7 +5,9 @@ ArchivoAeropuerto::ArchivoAeropuerto(){
 	archivo_aeropuertos.open(ARCHIVO_AERO);
 }
 
-void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto>* arbol){
+void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto*>* arbol){
+
+	Aeropuerto* aero;
 
 	while(!archivo_aeropuertos.eof()){
 		archivo_aeropuertos >> codigo;
@@ -17,11 +19,10 @@ void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto>* arbol){
 		archivo_aeropuertos >> dest_nacionales;
 		archivo_aeropuertos >> dest_internacionales;
 
-		Aeropuerto* aero = new Aeropuerto(nombre, ciudad, pais, superficie, cant_terminales, dest_nacionales, dest_internacionales);
+		aero = new Aeropuerto(nombre, ciudad, pais, superficie, cant_terminales, dest_nacionales, dest_internacionales);
 
 		arbol->insertar(codigo, aero);
 	}
-
 }
 
 

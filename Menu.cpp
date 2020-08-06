@@ -2,9 +2,9 @@
 
 
 Menu::Menu(){
-	arbol = new ABB<Aeropuerto>();
+	arbol = new ABB<Aeropuerto*>();
 	archivo_aeropuerto.cargar_arbol(arbol);
-	archivo_vuelos.leer_archivo();
+	//archivo_vuelos.leer_archivo();
 }
 
 Menu::~Menu(){
@@ -22,7 +22,7 @@ void Menu::iniciar(){
 }
 
 void Menu::comenzar_aeropuertos(){
-	int num;
+	int num=0;
 
 	while( num != FINALIZAR_APLICACION){
 		seleccionar_opcion(num);
@@ -104,7 +104,7 @@ void Menu::consultar_aeropuerto(){
 	cout << "Ingrese el codigo IATA del aeropuerto por el que desea CONSULTAR: " << endl;
 	cin >> clave;
 
-	NodoABB<Aeropuerto>* nodo = arbol -> buscar(clave);
+	NodoABB<Aeropuerto*>* nodo = arbol -> buscar(clave);
 
 	if (nodo != NULL){
 		mostrar_aeropuerto(nodo);
@@ -113,7 +113,7 @@ void Menu::consultar_aeropuerto(){
 	}
 }
 
-void Menu::mostrar_aeropuerto(NodoABB<Aeropuerto>* nodo){
+void Menu::mostrar_aeropuerto(NodoABB<Aeropuerto*>* nodo){
 
 	Aeropuerto *valor = nodo->obtener_valor();
 	cout << nodo->obtener_clave() << " ";
@@ -127,7 +127,7 @@ void Menu::agregar_aeropuerto(){
 	cout << "Ingrese el código IATA del aeropuerto que desea AGREGAR: " << endl;
 	cin >> clave;
 
-	NodoABB<Aeropuerto>* nodo = arbol -> buscar(clave);
+	NodoABB<Aeropuerto*>* nodo = arbol -> buscar(clave);
 
 	if( nodo == NULL){
 		ingresar_aeropuerto(clave);
@@ -175,7 +175,7 @@ void Menu::eliminar_aeropuerto(){
 	cout << "Ingrese el código IATA del aeropuerto que desea ELIMINAR: " << endl;
 	cin >> clave;
 
-	NodoABB<Aeropuerto>* nodo = arbol -> buscar(clave);
+	NodoABB<Aeropuerto*>* nodo = arbol -> buscar(clave);
 
 	if( nodo != NULL){
 		arbol->eliminar(clave);

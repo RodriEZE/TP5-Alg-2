@@ -25,7 +25,7 @@ class Menu{
 
 		ArchivoAeropuerto archivo_aeropuerto;
 		ArchivoVuelos archivo_vuelos;
-		ABB<Aeropuerto>* arbol;
+		ABB<Aeropuerto*>* arbol;
 
 	public:
 		Menu();
@@ -44,7 +44,7 @@ class Menu{
 
 		void eliminar_aeropuerto();
 
-		void mostrar_aeropuerto(NodoABB<Aeropuerto>*);
+		void mostrar_aeropuerto(NodoABB<Aeropuerto*>*);
 
 		void mostrar_aeropuertos_por_nivel();
 
