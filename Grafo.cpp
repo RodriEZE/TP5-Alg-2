@@ -85,7 +85,7 @@ void Grafo::eliminar_vertice(string o){
 void Grafo::eliminar_todo(){
 	list<Vertice*> :: iterator iterador;
 	iterador = lista_vertices.begin();
-	while(!esta_vacio()){
+	while(esta_vacio() == true){
 		delete (*iterador);
 		lista_vertices.erase(iterador);
 		iterador ++;

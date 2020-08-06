@@ -45,7 +45,7 @@ void Vertice::eliminar_arista(Vertice* o, Vertice* d){
 void Vertice::eliminar_todo(){
 	list<Arista*> :: iterator iterador;
 	iterador = lista_ady.begin();
-	while(!esta_vacia()){
+	while(esta_vacia() == true){
 		delete (*iterador);
 		lista_ady.erase(iterador);
 		iterador ++;
