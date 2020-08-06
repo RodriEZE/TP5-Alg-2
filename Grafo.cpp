@@ -73,8 +73,8 @@ void Grafo::eliminar_vertice(string o){
 	bool existe = false;
 	while( iterador != lista_vertices.end() && existe != true){
 		if(aux->obtener_codigo() == (*iterador)->obtener_codigo()){
-			delete (*iterador);
-			lista_vertices.erase(iterador);
+			delete aux;
+			lista_vertices.remove(aux);
 			existe = true;
 		} else {
 			iterador++;
@@ -85,9 +85,11 @@ void Grafo::eliminar_vertice(string o){
 void Grafo::eliminar_todo(){
 	list<Vertice*> :: iterator iterador;
 	iterador = lista_vertices.begin();
-	while(esta_vacio() == true){
-		delete (*iterador);
-		lista_vertices.erase(iterador);
+	while(esta_vacio() == false){
+		Vertice* aux;
+		aux = (*iterador);
+		delete aux;
+		lista_vertices.remove(aux);
 		iterador ++;
 	}
 }

@@ -61,3 +61,7 @@ void ArchivoVuelos::buscar_vuelo(string o, string d){
 void ArchivoVuelos::imprimir_grafo(){
 	grafo.imprimir_vertices();
 }
+
+ArchivoVuelos::~ArchivoVuelos(){
+
+}

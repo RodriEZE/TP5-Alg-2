@@ -33,8 +33,9 @@ void Vertice::eliminar_arista(Vertice* o, Vertice* d){
 	bool existe = false;
 	while(iterador != lista_ady.end() && existe != true){
 		if(o->obtener_codigo() == (*iterador)->obtener_origen() && d->obtener_codigo() == (*iterador)->obtener_destino()){
-			delete (*iterador);
-			lista_ady.erase(iterador);
+			Arista* aux;
+			aux = (*iterador);
+			lista_ady.remove(aux);
 			existe = true;
 		} else {
 			iterador ++;
@@ -45,9 +46,11 @@ void Vertice::eliminar_arista(Vertice* o, Vertice* d){
 void Vertice::eliminar_todo(){
 	list<Arista*> :: iterator iterador;
 	iterador = lista_ady.begin();
-	while(esta_vacia() == true){
-		delete (*iterador);
-		lista_ady.erase(iterador);
+	while(esta_vacia() == false){
+		Arista* aux;
+		aux = (*iterador);
+		delete aux;
+		lista_ady.remove(aux);
 		iterador ++;
 	}
 }

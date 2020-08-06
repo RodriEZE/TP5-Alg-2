@@ -53,7 +53,7 @@ void Menu::comenzar_vuelos(){
 	} else {
 		cout << "Ingrese origen" << endl;
 		cin >> origen;
-		archivo_vuelos.eliminar_vertice();
+		archivo_vuelos.eliminar_vertice(origen);
 	}
 }
 
@@ -189,5 +189,4 @@ void Menu::eliminar_aeropuerto(){
 	}
 
 }
-
 

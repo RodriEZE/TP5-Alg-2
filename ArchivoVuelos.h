@@ -56,6 +56,8 @@ public:
 	void buscar_vuelo(string o, string d);
 	void imprimir_grafo();
 
+	~ArchivoVuelos();
+
 };
 
 
