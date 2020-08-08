@@ -13,6 +13,8 @@
 #include "ABB.h"
 #include "ArchivoAeropuerto.h"
 #include "NodoABB.h"
+#include "Nodo.h"
+#include "Cola.h"
 #include "ArchivoVuelos.h"
 
 
@@ -43,6 +45,8 @@ class Menu{
 		void ingresar_aeropuerto(string );
 
 		void eliminar_aeropuerto();
+
+		void agregar_claves(Cola<NodoABB<Aeropuerto*>*> &, NodoABB<Aeropuerto*>*);
 
 		void mostrar_aeropuerto(NodoABB<Aeropuerto*>*);
 

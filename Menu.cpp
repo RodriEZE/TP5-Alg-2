@@ -90,12 +90,10 @@ void Menu::realizar_accion(int num){
 		case 4:
 				arbol->imprimir_en_orden();
 				break;
-
-/*
 		case 5:
 				mostrar_aeropuertos_por_nivel();
 				break;
-*/
+
 		case 6:
 				cout << "FIN DE LA APLICACION" << endl;
 				break;
@@ -190,3 +188,23 @@ void Menu::eliminar_aeropuerto(){
 
 }
 
+
+void Menu::mostrar_aeropuertos_por_nivel(){
+	NodoABB<Aeropuerto*>* nodo;
+	Cola<NodoABB<Aeropuerto*>*> cola;
+	cola.insertar(arbol->obtener_raiz());
+
+	while(!cola.esVacia()){
+		nodo = cola.obtenerDato();
+		cout << nodo->obtener_clave() << endl;
+		cola.sacarDato();
+		agregar_claves(cola, nodo->obtener_izquierda());
+		agregar_claves(cola, nodo->obtener_derecha());
+
+	}
+}
+
+void Menu::agregar_claves(Cola<NodoABB<Aeropuerto*>*> &cola, NodoABB<Aeropuerto*>* nodo){
+	if(nodo != NULL)
+		cola.insertar(nodo);
+}
