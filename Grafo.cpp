@@ -2,7 +2,7 @@
 #include "Grafo.h"
 
 Grafo::Grafo(){
-
+	tam = 0;
 }
 
 bool Grafo::esta_vacio(){
@@ -26,6 +26,9 @@ bool Grafo::existe_vertice(string c){
 
 void Grafo::insertar_vertice(Vertice* v){
 	lista_vertices.push_back(v);
+	v->asignar_id(tam);
+	tam++;
+
 }
 
 void Grafo::imprimir_vertices(){
@@ -80,6 +83,7 @@ void Grafo::eliminar_vertice(string o){
 			iterador++;
 		}
 	}
+	tam--;
 }
 
 void Grafo::eliminar_todo(){
@@ -101,6 +105,85 @@ bool Grafo::existe_arista(string o, string d){
 	else
 		return false;
 }
+
+void Grafo::iniciar(float distancia[], bool visitado[], int previo[]){
+
+	for( int i = 0 ; i <= tam ; ++i ){
+
+		distancia[ i ] = INF;
+	    previo[ i ] = -1;
+	    visitado[i]=false;
+	}
+
+	for( int i = 0; i <=tam ; i++){
+	    visitado [i] = false;
+	}
+}
+
+int Grafo::obtener_previo(){
+
+	return *previo;
+}
+
+void Grafo::Dijkstra(Vertice* inicial){
+
+		bool visitado[tam];
+		float peso;
+
+		this->iniciar(distancia, visitado, previo);
+
+		cola_prioridad.insertar(inicial, 0);
+		distancia[inicial->obtener_id()]= 0;
+
+		Vertice* actual, *adyacente;
+		list<Arista*> :: iterator iterador;
+
+
+		while (!cola_prioridad.esVacia()){
+			actual = cola_prioridad.desacolar();
+
+			if (visitado[actual->obtener_id()]) continue;
+			visitado[actual->obtener_id()] = true;
+
+			iterador = actual->obtener_lista().begin();
+
+			for(float i = 0; i < actual->obtener_lista().size(); i++){
+
+				adyacente = obtener_vertice((*iterador)->obtener_destino());
+				peso = (*iterador)->obtener_peso();
+				iterador++;
+
+				if(!visitado[adyacente->obtener_id()]){
+					comparacion(actual, adyacente, peso, distancia, visitado, previo);
+				}
+			}
+		}
+
+}
+
+void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes, float distancia[], bool visitado[], int previo[]){
+
+	if(distancia[act->obtener_id()] + pes <  distancia[ady->obtener_id()]){
+
+		distancia[ady->obtener_id()] = distancia[act->obtener_id()] + pes;
+		previo[ady->obtener_id()] = act->obtener_id();
+
+		cola_prioridad.insertar(ady, distancia[ady->obtener_id()]);
+	}
+
+}
+
+//void Grafo::imprimir_dijkstra(int dest){
+//
+//	if(previo[dest] != -1){
+//		this->imprimir_dijkstra(previo[dest]);
+//
+//		cout <<
+//
+//
+//	}
+//}
+
 
 Grafo::~Grafo(){
 	eliminar_todo();

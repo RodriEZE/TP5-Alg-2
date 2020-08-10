@@ -6,14 +6,30 @@
 #include <list>
 
 #include "Vertice.h"
+#include "Cola.h"
 
+#define INF 9999
+#define MAX_V 50
 
 using namespace std;
 
-
 class Grafo{
+
 private:
-	 list<Vertice*> lista_vertices;
+	//atributos
+	list<Vertice*> lista_vertices;
+	Cola<Vertice*> cola_prioridad;
+	float distancia[MAX_V];
+	int previo[MAX_V];
+	int tam;
+
+	//metodos
+	//Inicia las variables de dijkstra.
+	void iniciar(float distancia[], bool visitado[], int previo[]);
+	//compara un vertice con su adyacente para calculo de camino minimo.
+	void comparacion(Vertice*, Vertice*, float &, float distancia[], bool visitado[], int previo[]);
+
+
 public:
 	/*
 	 * PRE: -
@@ -69,6 +85,10 @@ public:
 	 */
 	Vertice* obtener_vertice(string);
 
+	int obtener_previo();
+
+	float obtener_distancia();
+
 	/*
 	 * PRE: Existe el grafo
 	 * POST: Elimina el atributo lista_vertice, libera recursos, etc.
@@ -80,6 +100,16 @@ public:
 	 * POST: Arista es un valor valido
 	 */
 	bool existe_arista(string o, string d);
+
+	/*
+	 * PRE: Existe, vertice y estan cargadas los vuelos y sus conexiones
+	 * POST: Arma los caminos y pesos minimos hacia todos los vertices
+	 *		 desde el vertice pasado como parametro.
+	 */
+	void Dijkstra(Vertice* inicial);
+
+	void imprimir_dijkstra(int);
+
 
 
 };

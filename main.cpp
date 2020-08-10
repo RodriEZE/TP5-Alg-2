@@ -8,6 +8,7 @@
 #include "ABB.h"
 #include "ArchivoAeropuerto.h"
 #include "Menu.h"
+#include "Cola.h"
 
 using namespace std;
 
@@ -18,5 +19,6 @@ int main(){
 	menu.iniciar();
 
 	return 0;
+
 }
 

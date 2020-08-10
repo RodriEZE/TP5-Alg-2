@@ -1,15 +1,31 @@
 #include "Vertice.h"
 
+
+Vertice::Vertice(){
+	codigo = "";
+	id = 0;
+}
+
+
 Vertice::Vertice(string c){
 	codigo = c;
+	id = 0;
 }
 
 void Vertice::asignar_codigo(string c){
 	codigo = c;
 }
 
+void Vertice::asignar_id(int i){
+	id = i;
+}
+
 string Vertice::obtener_codigo(){
 	return codigo;
+}
+
+int Vertice::obtener_id(){
+	return this->id;
 }
 
 list<Arista*> Vertice::obtener_lista(){

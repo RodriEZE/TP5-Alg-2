@@ -18,12 +18,11 @@ void ArchivoVuelos::leer_archivo(){
 		archivo_vuelos >> horas_vuelo;
 
 		verificar_vertice(codigo_partida);
-		hallar_aristas(codigo_partida, codigo_llegada, horas_vuelo);
+		hallar_aristas(codigo_partida, codigo_llegada, horas_vuelo, costo_vuelo);
 
 	}
 
 }
-
 
 void ArchivoVuelos::verificar_vertice(string codigo_partida){
 	if(grafo.existe_vertice(codigo_partida) == false){
@@ -32,9 +31,9 @@ void ArchivoVuelos::verificar_vertice(string codigo_partida){
 	}
 }
 
-void ArchivoVuelos::hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo){
+void ArchivoVuelos::hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo){
 	Vertice* aux_partida = grafo.obtener_vertice(codigo_partida);
-	Arista* nuevo_vertice = new Arista(codigo_partida, codigo_llegada, horas_vuelo);
+	Arista* nuevo_vertice = new Arista(codigo_partida, codigo_llegada, horas_vuelo, costo_vuelo);
 
 	grafo.insertar_arista(aux_partida, nuevo_vertice);
 }
@@ -56,6 +55,10 @@ void ArchivoVuelos::buscar_vuelo(string o, string d){
 	Arista* aux_arista = aux_partida->obtener_arista(d);
 	aux_arista->imprimir_datos();
 
+}
+
+Grafo ArchivoVuelos::obtener_grafo(){
+	return this->grafo;
 }
 
 void ArchivoVuelos::imprimir_grafo(){

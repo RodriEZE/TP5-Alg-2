@@ -8,16 +8,17 @@ using namespace std;
 
 
 class Arista{
+
 private:
 	string origen, destino;
-	float peso;
+	float peso_horas, peso_costo;
 public:
 
 	/*
 	 * PRE: Recibe dos string y un float
 	 * POST: Crea un objeto de tipo Arista
 	 */
-	Arista(string o, string d, float p);
+	Arista(string o, string d, float p, float c);
 
 	/*
 	 * PRE: Recibe un string

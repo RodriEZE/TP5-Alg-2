@@ -13,8 +13,15 @@ class Vertice{
 private:
 	list<Arista*> lista_ady;
 	string codigo;
+	int id;
 
 public:
+	/*
+	 * PRE:-
+	 * POST: Crea un objeto vertice en null
+	 */
+	Vertice();
+
 	/*
 	 * PRE: Recibe un string
 	 * POST: Crea un objeto de tipo Vertice
@@ -26,12 +33,23 @@ public:
 	 * POST: Asigna un valor al atributo codigo
 	 */
 	void asignar_codigo(string);
+	/*
+	 * PRE: Recibe un int
+	 * POST: Asigna un id al vertice.
+	 */
+	void asignar_id(int i);
 
 	/*
 	 * PRE: -
 	 * POST: Devuelve un string
 	 */
 	string obtener_codigo();
+
+	/*
+	 * PRE: -
+	 * POST: Devuelve el dato en id.
+	 */
+	int obtener_id();
 
 	/*
 	 * PRE: -

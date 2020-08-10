@@ -50,10 +50,23 @@ void Menu::comenzar_vuelos(){
 		cout << "Ingrese destino" << endl;
 		cin >> destino;
 		archivo_vuelos.buscar_vuelo(origen, destino);
-	} else {
+	} else if (num==4){
 		cout << "Ingrese origen" << endl;
 		cin >> origen;
 		archivo_vuelos.eliminar_vertice(origen);
+	} else{
+
+		cout << "\nOrigen:";
+		cin >>origen;
+
+		archivo_vuelos.obtener_grafo().Dijkstra(archivo_vuelos.obtener_grafo().obtener_vertice(origen));
+
+//		cout << "\nDestino:";
+//		cin >> destino;
+//
+//		Vertice* ver_destino = archivo_vuelos.obtener_grafo().obtener_vertice(destino);
+
+
 	}
 }
 

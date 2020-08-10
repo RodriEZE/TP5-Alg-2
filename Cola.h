@@ -40,6 +40,10 @@ public:
 	// POST : agrega un dato al final de la cola con la prioridad designada
 	void insertar(T d, int prioridad);
 
+	// PRE: Debe existir almenos un dato en la cola
+	// POST: Desacola el dato en la primera posicion, y lo devuelve.
+	T desacolar();
+
 	// Obtener el dato que está al principio
 	// PRE : - cola creada y no vacía
 	// POST : devuelve el dato que está al principio
@@ -89,19 +93,28 @@ void Cola<T>:: insertar(T d, int prioridad) {
 	if (this -> esVacia ()) {
 
 		primero = pnodo ;
-
+		this->tam++;
 	}else{
 
 		Nodo<T>* aux = primero;
 
-		while((aux->obtener_siguiente() != NULL) && (aux->obtener_siguiente()->obtener_prioridad()>prioridad)){
+		while((aux->obtener_siguiente() != NULL) && (aux->obtener_siguiente()->obtener_prioridad()<prioridad)){
 
 			aux = aux->obtener_siguiente();
 		}
 
 		pnodo->establecer_siguiente(aux->obtener_siguiente());
 		aux->establecer_siguiente(pnodo);
+		this-> tam++;
 	}
+}
+
+template<class T>
+T Cola<T>::desacolar(){
+
+	T desacolado = primero->obtener_dato();
+	sacarDato();
+	return desacolado;
 }
 
 template<class T>

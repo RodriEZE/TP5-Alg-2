@@ -49,12 +49,13 @@ public:
 	 * PRE: Recibe strings y un float
 	 * POST: Inserta en la lista del vertice su correspondiente Arista
 	 */
-	void hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo);
+	void hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo);
 
 	void eliminar_arista(string o, string d);
 	void eliminar_vertice(string o);
 	void buscar_vuelo(string o, string d);
 	void imprimir_grafo();
+	Grafo obtener_grafo();
 
 	~ArchivoVuelos();
 
