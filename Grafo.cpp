@@ -174,8 +174,6 @@ void Grafo::imprimir_dijkstra(int dest){
 		this->imprimir_dijkstra(previo[dest]);
 	string codigo = hallar_codigo(dest);
 		cout << codigo << endl;
-
-
 	}
 }
 
