@@ -112,6 +112,8 @@ public:
 
 	string hallar_codigo(int);
 
+	void recorrer(Vertice* actual, bool visitado[]);
+
 
 
 };

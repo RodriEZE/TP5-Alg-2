@@ -131,29 +131,34 @@ void Grafo::Dijkstra(Vertice* inicial){
 		cola_prioridad.insertar(inicial, 0);
 		distancia[inicial->obtener_id()]= 0;
 
-		Vertice* actual, *adyacente;
-		list<Arista*> :: iterator iterador;
+		Vertice* actual;
 
 		while (!cola_prioridad.esVacia()){
 			actual = cola_prioridad.desacolar();
 
 			if (visitado[actual->obtener_id()]) continue;
 			visitado[actual->obtener_id()] = true;
+			comp(actual, visitado);
 
-			iterador = actual->obtener_lista().begin();
 
-			for(float i = 0; i < actual->obtener_lista().size(); i++){
-
-				adyacente = obtener_vertice((*iterador)->obtener_destino());
-				peso = (*iterador)->obtener_peso();
-				iterador++;
-
-				if(!visitado[adyacente->obtener_id()]){
-					comparacion(actual, adyacente, peso);
-				}
-			}
 		}
 
+}
+
+void Grafo::recorrer(Vertice* actual, bool visitado[]){
+	Vertice* ady;
+	list<Arista*> :: iterator iterador;
+	list<Arista*> aux = actual->obtener_lista();
+	float peso;
+	for(iterador = aux.begin(); iterador != aux.end(); iterador++){
+
+	ady = obtener_vertice((*iterador)->obtener_destino());
+	peso = (*iterador)->obtener_peso();
+
+	if(!visitado[ady->obtener_id()]){
+	comparacion(actual, ady, peso);
+		}
+	}
 }
 
 void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes){
