@@ -52,7 +52,7 @@ public:
 	// Borrado del nodo que está al principio
 	// PRE : - cola creada y no vacía
 	// POST : libera el nodo que está al principio
-	void sacarDato ();
+	void sacarDato (int variacion);
 };
 
 template<class T>
@@ -64,7 +64,7 @@ Cola<T>:: Cola () {
 template<class T>
 Cola<T>::~ Cola () {
 	while (!( esVacia ()))
-		sacarDato ();
+		sacarDato (0);
 }
 
 template<class T>
@@ -113,7 +113,7 @@ template<class T>
 T Cola<T>::desacolar(){
 
 	T desacolado = primero->obtener_dato();
-	sacarDato();
+	sacarDato(0);
 	return desacolado;
 }
 
@@ -123,12 +123,14 @@ T Cola<T>:: obtenerDato () {
 }
 
 template<class T>
-void Cola<T>:: sacarDato () {
+void Cola<T>:: sacarDato (int variacion) {
 	if (primero == ultimo)
 		ultimo = 0;
 	Nodo<T>* paux = primero ;
 	primero = paux -> obtener_siguiente ();
-	delete paux ;
+	if (variacion==0) {
+		delete paux ;
+	}else paux = NULL;
 	tam --;
 }
 

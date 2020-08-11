@@ -27,7 +27,7 @@ private:
 	//Inicia las variables de dijkstra.
 	void iniciar(float distancia[], bool visitado[], int previo[]);
 	//compara un vertice con su adyacente para calculo de camino minimo.
-	void comparacion(Vertice*, Vertice*, float &, float distancia[], bool visitado[], int previo[]);
+	void comparacion(Vertice*, Vertice*, float &);
 
 
 public:

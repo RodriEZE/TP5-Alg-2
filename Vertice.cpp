@@ -65,9 +65,9 @@ void Vertice::eliminar_todo(){
 	while(esta_vacia() == false){
 		Arista* aux;
 		aux = (*iterador);
+		iterador ++;
 		delete aux;
 		lista_ady.remove(aux);
-		iterador ++;
 	}
 }
 

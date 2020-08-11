@@ -92,9 +92,9 @@ void Grafo::eliminar_todo(){
 	while(esta_vacio() == false){
 		Vertice* aux;
 		aux = (*iterador);
+		iterador ++;
 		delete aux;
 		lista_vertices.remove(aux);
-		iterador ++;
 	}
 }
 
@@ -113,10 +113,6 @@ void Grafo::iniciar(float distancia[], bool visitado[], int previo[]){
 		distancia[ i ] = INF;
 	    previo[ i ] = -1;
 	    visitado[i]=false;
-	}
-
-	for( int i = 0; i <=tam ; i++){
-	    visitado [i] = false;
 	}
 }
 
@@ -138,7 +134,6 @@ void Grafo::Dijkstra(Vertice* inicial){
 		Vertice* actual, *adyacente;
 		list<Arista*> :: iterator iterador;
 
-
 		while (!cola_prioridad.esVacia()){
 			actual = cola_prioridad.desacolar();
 
@@ -154,14 +149,14 @@ void Grafo::Dijkstra(Vertice* inicial){
 				iterador++;
 
 				if(!visitado[adyacente->obtener_id()]){
-					comparacion(actual, adyacente, peso, distancia, visitado, previo);
+					comparacion(actual, adyacente, peso);
 				}
 			}
 		}
 
 }
 
-void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes, float distancia[], bool visitado[], int previo[]){
+void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes){
 
 	if(distancia[act->obtener_id()] + pes <  distancia[ady->obtener_id()]){
 

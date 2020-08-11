@@ -68,6 +68,8 @@ void Menu::comenzar_vuelos(){
 
 
 	}
+
+	cout << "\n\nFIN APLICACION";
 }
 
 void Menu::seleccionar_opcion(int &num){
@@ -210,7 +212,7 @@ void Menu::mostrar_aeropuertos_por_nivel(){
 	while(!cola.esVacia()){
 		nodo = cola.obtenerDato();
 		cout << nodo->obtener_clave() << endl;
-		cola.sacarDato();
+		cola.sacarDato(0);
 		agregar_claves(cola, nodo->obtener_izquierda());
 		agregar_claves(cola, nodo->obtener_derecha());
 
