@@ -124,10 +124,8 @@ int Grafo::obtener_previo(){
 void Grafo::Dijkstra(Vertice* inicial){
 
 		bool visitado[tam];
-		float peso;
 
 		this->iniciar(distancia, visitado, previo);
-
 		cola_prioridad.insertar(inicial, 0);
 		distancia[inicial->obtener_id()]= 0;
 
@@ -138,37 +136,36 @@ void Grafo::Dijkstra(Vertice* inicial){
 
 			if (visitado[actual->obtener_id()]) continue;
 			visitado[actual->obtener_id()] = true;
-			comp(actual, visitado);
-
-
+			recorrer(actual, visitado);
 		}
 
 }
 
 void Grafo::recorrer(Vertice* actual, bool visitado[]){
-	Vertice* ady;
+	Vertice* adyacente;
 	list<Arista*> :: iterator iterador;
 	list<Arista*> aux = actual->obtener_lista();
 	float peso;
+
 	for(iterador = aux.begin(); iterador != aux.end(); iterador++){
 
-	ady = obtener_vertice((*iterador)->obtener_destino());
-	peso = (*iterador)->obtener_peso();
+		adyacente = obtener_vertice((*iterador)->obtener_destino());
+		peso = (*iterador)->obtener_peso();
 
-	if(!visitado[ady->obtener_id()]){
-	comparacion(actual, ady, peso);
-		}
+		if(!visitado[adyacente->obtener_id()]){
+		comparacion(actual, adyacente, peso);
 	}
+  }
 }
 
-void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes){
+void Grafo::comparacion(Vertice* actual, Vertice* adyacente, float &pes){
 
-	if(distancia[act->obtener_id()] + pes <  distancia[ady->obtener_id()]){
+	if(distancia[actual->obtener_id()] + pes <  distancia[adyacente->obtener_id()]){
 
-		distancia[ady->obtener_id()] = distancia[act->obtener_id()] + pes;
-		previo[ady->obtener_id()] = act->obtener_id();
+		distancia[adyacente->obtener_id()] = distancia[actual->obtener_id()] + pes;
+		previo[adyacente->obtener_id()] = actual->obtener_id();
 
-		cola_prioridad.insertar(ady, distancia[ady->obtener_id()]);
+		cola_prioridad.insertar(adyacente, distancia[adyacente->obtener_id()]);
 	}
 
 }
@@ -181,7 +178,6 @@ void Grafo::imprimir_dijkstra(int dest){
 		cout << codigo << endl;
 	}
 }
-
 
 string Grafo::hallar_codigo(int dest){
 	list<Vertice*> :: iterator iterador;
