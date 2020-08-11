@@ -8,7 +8,7 @@ ArchivoVuelos::ArchivoVuelos(){
 }
 
 
-void ArchivoVuelos::leer_archivo(){
+void ArchivoVuelos::leer_archivo(Grafo* grafo){
 
 	while(!archivo_vuelos.eof()){
 
@@ -17,27 +17,27 @@ void ArchivoVuelos::leer_archivo(){
 		archivo_vuelos >> costo_vuelo;
 		archivo_vuelos >> horas_vuelo;
 
-		verificar_vertice(codigo_partida);
-		hallar_aristas(codigo_partida, codigo_llegada, horas_vuelo, costo_vuelo);
+		verificar_vertice(codigo_partida, grafo);
+		hallar_aristas(codigo_partida, codigo_llegada, horas_vuelo, costo_vuelo, grafo);
 
 	}
 
 }
 
-void ArchivoVuelos::verificar_vertice(string codigo_partida){
-	if(grafo.existe_vertice(codigo_partida) == false){
+void ArchivoVuelos::verificar_vertice(string codigo_partida, Grafo* grafo){
+	if(grafo->existe_vertice(codigo_partida) == false){
 		Vertice* vertice = new Vertice(codigo_partida);
-		grafo.insertar_vertice(vertice);
+		grafo->insertar_vertice(vertice);
 	}
 }
 
-void ArchivoVuelos::hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo){
-	Vertice* aux_partida = grafo.obtener_vertice(codigo_partida);
+void ArchivoVuelos::hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo, Grafo* grafo){
+	Vertice* aux_partida = grafo->obtener_vertice(codigo_partida);
 	Arista* nuevo_vertice = new Arista(codigo_partida, codigo_llegada, horas_vuelo, costo_vuelo);
 
-	grafo.insertar_arista(aux_partida, nuevo_vertice);
+	grafo->insertar_arista(aux_partida, nuevo_vertice);
 }
-
+/*
 void ArchivoVuelos::eliminar_arista(string o, string d){
 	Vertice* aux_partida = grafo.obtener_vertice(o);
 	Vertice* aux_llegada = grafo.obtener_vertice(d);
@@ -56,13 +56,9 @@ void ArchivoVuelos::buscar_vuelo(string o, string d){
 	aux_arista->imprimir_datos();
 
 }
-
-Grafo ArchivoVuelos::obtener_grafo(){
-	return this->grafo;
-}
-
-void ArchivoVuelos::imprimir_grafo(){
-	grafo.imprimir_vertices();
+*/
+void ArchivoVuelos::imprimir_grafo(Grafo* grafo){
+	grafo->imprimir_vertices();
 }
 
 ArchivoVuelos::~ArchivoVuelos(){

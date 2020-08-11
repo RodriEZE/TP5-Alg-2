@@ -22,7 +22,6 @@ private:
 	float costo_vuelo, horas_vuelo;
 	string codigo_partida, codigo_llegada;
 	ifstream archivo_vuelos;
-	Grafo grafo;
 
 public:
 
@@ -36,27 +35,25 @@ public:
 	 * PRE: El archivo vuelos.txt se abrio correctamente
 	 * POST: Lee correctamente el archivo
 	 */
-	void leer_archivo();
+	void leer_archivo(Grafo *grafo);
 
 	/*
 	 * PRE: Recibe un string
 	 * POST: Si el string no existe en el grafo lo inserta, caso contrario lo descarta
 	 */
-	void verificar_vertice(string c);
+	void verificar_vertice(string c, Grafo * grafo);
 
 
 	/*
 	 * PRE: Recibe strings y un float
 	 * POST: Inserta en la lista del vertice su correspondiente Arista
 	 */
-	void hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo);
+	void hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo, Grafo* grafo);
 
 	void eliminar_arista(string o, string d);
 	void eliminar_vertice(string o);
 	void buscar_vuelo(string o, string d);
-	void imprimir_grafo();
-	Grafo obtener_grafo();
-
+	void imprimir_grafo(Grafo *grafo);
 	~ArchivoVuelos();
 
 };

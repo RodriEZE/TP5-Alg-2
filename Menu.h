@@ -16,6 +16,7 @@
 #include "Nodo.h"
 #include "Cola.h"
 #include "ArchivoVuelos.h"
+#include "Grafo.h"
 
 
 using namespace std;
@@ -28,6 +29,7 @@ class Menu{
 		ArchivoAeropuerto archivo_aeropuerto;
 		ArchivoVuelos archivo_vuelos;
 		ABB<Aeropuerto*>* arbol;
+		Grafo grafo;
 
 	public:
 		Menu();

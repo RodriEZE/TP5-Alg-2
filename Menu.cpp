@@ -4,7 +4,7 @@
 Menu::Menu(){
 	arbol = new ABB<Aeropuerto*>();
 	archivo_aeropuerto.cargar_arbol(arbol);
-	archivo_vuelos.leer_archivo();
+	archivo_vuelos.leer_archivo(&grafo);
 }
 
 Menu::~Menu(){
@@ -36,30 +36,30 @@ void Menu::comenzar_vuelos(){
 	cout << "Para imprimir el grafo (1), para eliminar una arista(2), para hallar un vuelo (3), para eliminar vertice(4)" << endl;
 	cin >> num;
 	if(num == 1){
-		archivo_vuelos.imprimir_grafo();
+		archivo_vuelos.imprimir_grafo(&grafo);
 	}
 	else if(num == 2){
 		cout << "Ingrese origen" << endl;
 		cin >> origen;
 		cout << "Ingrese destino" << endl;
 		cin >> destino;
-		archivo_vuelos.eliminar_arista(origen, destino);
+	//	archivo_vuelos.eliminar_arista(origen, destino);
 	} else if (num == 3){
 		cout << "Ingrese origen" << endl;
 		cin >> origen;
 		cout << "Ingrese destino" << endl;
 		cin >> destino;
-		archivo_vuelos.buscar_vuelo(origen, destino);
+	//	archivo_vuelos.buscar_vuelo(origen, destino);
 	} else if (num==4){
 		cout << "Ingrese origen" << endl;
 		cin >> origen;
-		archivo_vuelos.eliminar_vertice(origen);
+	//	archivo_vuelos.eliminar_vertice(origen);
 	} else{
 
 		cout << "\nOrigen:";
 		cin >>origen;
 
-		archivo_vuelos.obtener_grafo().Dijkstra(archivo_vuelos.obtener_grafo().obtener_vertice(origen));
+		grafo.Dijkstra(grafo.obtener_vertice(origen));
 
 //		cout << "\nDestino:";
 //		cin >> destino;
