@@ -15,8 +15,12 @@ void Arista::asignar_destino(string d){
 	destino = d;
 }
 
-void Arista::asignar_peso(float p){
+void Arista::asignar_peso_horas(float p){
 	peso_horas = p;
+}
+
+void Arista::asignar_peso_costo(float c){
+	peso_costo = c;
 }
 
 string Arista::obtener_origen(){
@@ -27,12 +31,16 @@ string Arista::obtener_destino(){
 	return this->destino;
 }
 
-float Arista::obtener_peso(){
+float Arista::obtener_peso_horas(){
 	return peso_horas;
 }
 
+float Arista::obtener_peso_costo(){
+	return peso_costo;
+}
+
 void Arista::imprimir_datos(){
-	cout << "Vuelo origen:" << " " << origen << " " << "Vuelo destino:" << " " << destino << " " << "Peso:" << " " << peso_horas << endl;
+	cout << "Vuelo origen:" << " " << origen << " " << "Vuelo destino:" << " " << destino << " " << "Horas:" << " " << peso_horas << " " << "Costo:" << " " << peso_costo << endl;
 }
 
 Arista::~Arista(){

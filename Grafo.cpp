@@ -150,7 +150,7 @@ void Grafo::recorrer(Vertice* actual, bool visitado[]){
 	for(iterador = aux.begin(); iterador != aux.end(); iterador++){
 
 		adyacente = obtener_vertice((*iterador)->obtener_destino());
-		peso = (*iterador)->obtener_peso();
+		peso = (*iterador)->obtener_peso_horas();
 
 		if(!visitado[adyacente->obtener_id()]){
 		comparacion(actual, adyacente, peso);
@@ -170,16 +170,33 @@ void Grafo::comparacion(Vertice* actual, Vertice* adyacente, float &pes){
 
 }
 
+
 void Grafo::imprimir_dijkstra(int dest){
 
+	/*
 	if(previo[dest] != -1){
 		this->imprimir_dijkstra(previo[dest]);
-	string codigo = hallar_codigo(dest);
-		cout << codigo << endl;
+	Vertice* aux_destino = obtener_vertice(dest);
+	Vertice* aux_origen = obtener_vertice(previo[dest]);
+	Arista* aux_a = aux_origen->obtener_arista(aux_destino->obtener_codigo());
+	aux_a->imprimir_datos();
 	}
+	if(previo[dest] == -1){
+		cout << "No hay conexiones entre los dos aeropuertos" << endl;
+	}
+	*/
+	if(distancia[dest] == 0){
+		cout << "No hay conexiones entre los dos aeropuertos" << endl;
+	} else {
+		this->imprimir_dijkstra(previo[dest]);
+			Vertice* aux_destino = obtener_vertice(dest);
+			Vertice* aux_origen = obtener_vertice(previo[dest]);
+			Arista* aux_a = aux_origen->obtener_arista(aux_destino->obtener_codigo());
+			aux_a->imprimir_datos();
+		}
 }
 
-string Grafo::hallar_codigo(int dest){
+Vertice* Grafo::obtener_vertice(int dest){
 	list<Vertice*> :: iterator iterador;
 	iterador = lista_vertices.begin();
 	bool existe = false;
@@ -191,7 +208,7 @@ string Grafo::hallar_codigo(int dest){
 			} else {
 				iterador ++;
 			}
-		} return aux->obtener_codigo();
+		} return aux;
 }
 
 Grafo::~Grafo(){

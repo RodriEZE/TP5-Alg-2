@@ -105,6 +105,10 @@ bool Vertice::existe_arista(string destino){
 		return existe;
 }
 
+void Vertice::imprimir_datos(Arista* a){
+	a->imprimir_datos();
+}
+
 Vertice::~Vertice(){
 	eliminar_todo();
 }

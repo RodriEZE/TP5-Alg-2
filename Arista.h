@@ -34,9 +34,15 @@ public:
 
 	/*
 	 * PRE: Recibe un float
+	 * POST: Asigna valor al atributo peso horas
+	 */
+	void asignar_peso_horas(float);
+
+	/*
+	 * PRE: Recibe un float
 	 * POST: Asigna valor al atributo peso
 	 */
-	void asignar_peso(float);
+	void asignar_peso_costo(float);
 
 	/*
 	 * PRE: -
@@ -54,7 +60,13 @@ public:
 	 * PRE: -
 	 * POST: Devuelve un float
 	 */
-	float obtener_peso();
+	float obtener_peso_horas();
+
+	/*
+	 * PRE: -
+	 * POST: Devuelve un float
+	 */
+	float obtener_peso_costo();
 
 	/*
 	 * PRE: -
