@@ -110,6 +110,8 @@ public:
 
 	void imprimir_dijkstra(int);
 
+	string hallar_codigo(int);
+
 
 
 };

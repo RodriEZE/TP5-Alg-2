@@ -168,17 +168,32 @@ void Grafo::comparacion(Vertice* act, Vertice* ady, float &pes){
 
 }
 
-//void Grafo::imprimir_dijkstra(int dest){
-//
-//	if(previo[dest] != -1){
-//		this->imprimir_dijkstra(previo[dest]);
-//
-//		cout <<
-//
-//
-//	}
-//}
+void Grafo::imprimir_dijkstra(int dest){
 
+	if(previo[dest] != -1){
+		this->imprimir_dijkstra(previo[dest]);
+	string codigo = hallar_codigo(dest);
+		cout << codigo << endl;
+
+
+	}
+}
+
+
+string Grafo::hallar_codigo(int dest){
+	list<Vertice*> :: iterator iterador;
+	iterador = lista_vertices.begin();
+	bool existe = false;
+	Vertice* aux;
+	while( iterador != lista_vertices.end() && existe != true){
+		if(dest == (*iterador)->obtener_id()){
+				existe = true;
+				aux = (*iterador);
+			} else {
+				iterador ++;
+			}
+		} return aux->obtener_codigo();
+}
 
 Grafo::~Grafo(){
 	eliminar_todo();

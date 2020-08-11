@@ -61,10 +61,12 @@ void Menu::comenzar_vuelos(){
 
 		grafo.Dijkstra(grafo.obtener_vertice(origen));
 
-//		cout << "\nDestino:";
-//		cin >> destino;
-//
-//		Vertice* ver_destino = archivo_vuelos.obtener_grafo().obtener_vertice(destino);
+		cout << "\nDestino:";
+		cin >> destino;
+
+		Vertice* ver_destino = grafo.obtener_vertice(destino);
+		grafo.imprimir_dijkstra(ver_destino->obtener_id());
+
 
 
 	}
