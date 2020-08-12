@@ -21,7 +21,7 @@
 
 using namespace std;
 
-const int FINALIZAR_APLICACION = 6;
+const int FINALIZAR_APLICACION = 8;
 
 class Menu{
 	private:

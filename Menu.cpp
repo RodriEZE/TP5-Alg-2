@@ -73,6 +73,7 @@ void Menu::realizar_accion(int num){
 				ingresar_entrada(origen, destino);
 				grafo.Dijkstra(grafo.obtener_vertice(origen));
 				Vertice* ver_destino = grafo.obtener_vertice(destino);
+				cout << "\nLas conexiones encontradas son:\n" << endl;
 				grafo.imprimir_dijkstra(ver_destino->obtener_id());
 				break;
 			}
