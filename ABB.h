@@ -271,7 +271,7 @@ NodoABB<T>* ABB<T>::eliminar(NodoABB<T>* nodo, string clave)
 
     if (nodo->obtener_clave() == clave)
     {
-        if (nodo->es_hoja())
+        if (nodo->es_hoja()){
         	if(nodo->es_copiado()){
         		nodo->asignar_valor(NULL);
         		delete nodo;
@@ -280,28 +280,43 @@ NodoABB<T>* ABB<T>::eliminar(NodoABB<T>* nodo, string clave)
         		delete nodo;
         		nodo = NULL;
         	}
-
+        }
         else if (nodo->solo_hijo_derecha())
         {
             nodo->obtener_derecha()->asignar_padre(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_derecha();
-            delete aux;
-            aux = NULL;
+
+            if (aux->es_copiado()){
+            	aux->asignar_valor(NULL);
+            	delete aux;
+            	aux = NULL;
+            }else{
+            	delete aux;
+            	aux = NULL;
+            }
         }
         else if (nodo->solo_hijo_izquierda())
         {
             nodo->obtener_izquierda()->asignar_padre(nodo->obtener_padre());
             NodoABB<T>* aux = nodo;
             nodo = nodo->obtener_izquierda();
-            delete aux;
-            aux = NULL;
+            if (aux->es_copiado()){
+                aux->asignar_valor(NULL);
+               	delete aux;
+               	aux = NULL;
+            }else{
+             	delete aux;
+                aux = NULL;
+            }
         }
 
         else
         {
             string sucesor_clave = this->sucesor(clave);
             NodoABB<T>* nodo_sucesor = this->buscar(sucesor_clave);
+
+            delete nodo->obtener_valor();
 
             nodo->asignar_valor(nodo_sucesor->obtener_valor());
             nodo->asignar_clave(sucesor_clave);
