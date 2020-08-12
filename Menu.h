@@ -32,32 +32,84 @@ class Menu{
 		Grafo grafo;
 
 	public:
+
+		/*
+		 * PRE: -
+		 * POST: Constructor carga la informacion de los archivos en el arbol y el grafo.
+		 */
 		Menu();
 
+		/*
+		 * PRE: -
+		 * POST: Da inicio a las instrucciones de menu.
+		 */
 		void iniciar();
 
+		/*
+		 * PRE:-
+		 * POST: Guarda la opcion que el usuario desea realizar.
+		 */
 		void seleccionar_opcion(int& op);
 
+
+		/*
+		 * PRE:
+		 * POST: Ejecuta la acción segun el num ingresado.
+		 */
 		void realizar_accion(int num);
 
+
+		/*
+		 * PRE: El arbol tiene que estar cargado.
+		 * POST: Si el aeropuerto existe devuelve la informacion.
+		 */
 		void consultar_aeropuerto();
 
+		/*
+		 * PRE: -
+		 * POST: Si el codigo del aeropuerto ingresado no existe, se cargará en el arbol.
+		 */
 		void agregar_aeropuerto();
 
+
+		/*
+		 * PRE: -
+		 * POST: Ingresa los datos del aeropuerto.
+		 */
 		void ingresar_aeropuerto(string );
 
+		/*
+		 * PRE: -
+		 * POST: Si el codigo del aeropuerto ingresado existe en el arbol, este se eliminará
+		 */
 		void eliminar_aeropuerto();
 
+		/*
+		 * PRE: -
+		 * POST: Si el nodo es distinto de null, se agrega en la cola.
+		 */
 		void agregar_claves(Cola<NodoABB<Aeropuerto*>*> &, NodoABB<Aeropuerto*>*);
 
+
+		/*
+		 * PRE: El arbol debe encontrarse cargado.
+		 * POST: Muestra la informacion del aeropuerto.
+		 */
 		void mostrar_aeropuerto(NodoABB<Aeropuerto*>*);
 
+		/*
+		 * PRE: El arbol debe encontrarse cargado
+		 * POST: Muestra el arbol haciendo un recorrido en ancho.
+		 */
 		void mostrar_aeropuertos_por_nivel();
 
-		void ingresar_entrada(string &, string &);
+		/*
+		 * PRE:-
+		 * POST: Ingresa origen y destino de los aeropuertos.
+		 */
+		void ingresar_entrada(string & origen, string & destino);
 
-		void ingresar_entrada(string &);
-
+		//Destructor
 		~Menu();
 };
 

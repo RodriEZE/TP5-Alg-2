@@ -179,9 +179,10 @@ void Menu::mostrar_aeropuertos_por_nivel(){
 	cola.insertar(arbol->obtener_raiz());
 
 	while(!cola.esVacia()){
-		nodo = cola.obtenerDato();
+
+		nodo = cola.desacolar();
 		cout << nodo->obtener_clave() << endl;
-		cola.sacarDato(0);
+
 		agregar_claves(cola, nodo->obtener_izquierda());
 		agregar_claves(cola, nodo->obtener_derecha());
 
