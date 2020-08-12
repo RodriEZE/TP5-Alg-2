@@ -152,9 +152,7 @@ void Grafo::recorrer(Vertice* actual, bool visitado[], int op){
 		adyacente = obtener_vertice((*iterador)->obtener_destino());
 		peso = (*iterador)->obtener_peso(op);
 
-		if(!visitado[adyacente->obtener_id()]){
 		comparacion(actual, adyacente, peso);
-	}
   }
 }
 
@@ -170,19 +168,20 @@ void Grafo::comparacion(Vertice* actual, Vertice* adyacente, float &pes){
 
 }
 
-
-void Grafo::imprimir_dijkstra(int dest){
+void Grafo::imprimir_dijkstra(int dest, float & horas, float & costo){
 
 	if((previo[dest]<lista_vertices.size()) && (previo[dest] > -1)){
 
-		this->imprimir_dijkstra(previo[dest]);
+		this->imprimir_dijkstra(previo[dest], horas, costo);
 		Vertice* aux_destino = obtener_vertice(dest);
 		Vertice* aux_origen = obtener_vertice(previo[dest]);
 		Arista* aux_a = aux_origen->obtener_arista(aux_destino->obtener_codigo());
+		horas = horas + aux_a->obtener_peso_horas();
+		costo = costo + aux_a->obtener_peso_costo();
 		aux_a->imprimir_datos();
 
 	}else if (distancia[dest] == INF){
-		cout << "\nNo existe conexion entre los aeropuertos ingresados." << endl;
+		cout << "No existe conexion entre los aeropuertos ingresados.\n" << endl;
 	}
 }
 

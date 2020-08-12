@@ -37,26 +37,7 @@ void ArchivoVuelos::hallar_aristas(string codigo_partida, string codigo_llegada,
 
 	grafo->insertar_arista(aux_partida, nuevo_vertice);
 }
-/*
-void ArchivoVuelos::eliminar_arista(string o, string d){
-	Vertice* aux_partida = grafo.obtener_vertice(o);
-	Vertice* aux_llegada = grafo.obtener_vertice(d);
-	aux_partida->eliminar_arista(aux_partida, aux_llegada);
-	grafo.imprimir_vertices();
-}
 
-void ArchivoVuelos::eliminar_vertice(string o){
-	grafo.eliminar_vertice(o);
-	grafo.imprimir_vertices();
-}
-
-void ArchivoVuelos::buscar_vuelo(string o, string d){
-	Vertice* aux_partida = grafo.obtener_vertice(o);
-	Arista* aux_arista = aux_partida->obtener_arista(d);
-	aux_arista->imprimir_datos();
-
-}
-*/
 void ArchivoVuelos::imprimir_grafo(Grafo* grafo){
 	grafo->imprimir_vertices();
 }

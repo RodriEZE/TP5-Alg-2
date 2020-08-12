@@ -110,7 +110,7 @@ public:
 	 */
 	void Dijkstra(Vertice* inicial, int op);
 
-	void imprimir_dijkstra(int);
+	void imprimir_dijkstra(int, float&, float&);
 
 	string hallar_codigo(int);
 

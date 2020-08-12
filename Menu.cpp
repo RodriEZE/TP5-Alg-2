@@ -52,6 +52,10 @@ void Menu::realizar_accion(int num){
 
 	string origen, destino;
 	int op;
+	bool activo = true;
+
+	limpiar_pantalla();
+
 	switch(num){
 		case 1:
 				consultar_aeropuerto();
@@ -72,17 +76,53 @@ void Menu::realizar_accion(int num){
 				archivo_vuelos.imprimir_grafo(&grafo);
 				break;
 		case 7:{
+				float total_horas = 0, total_costo = 0;
 				ingresar_entrada(origen, destino,op);
 				grafo.Dijkstra(grafo.obtener_vertice(origen), op);
 				Vertice* ver_destino = grafo.obtener_vertice(destino);
 				cout << "\nLas conexiones encontradas son:\n" << endl;
-				grafo.imprimir_dijkstra(ver_destino->obtener_id());
+				grafo.imprimir_dijkstra(ver_destino->obtener_id(), total_horas, total_costo);
+				imprimir_totales(total_horas, total_costo);
 				break;
 			}
 		case 8:
+				activo = false;
 				cout << "FIN DE LA APLICACION" << endl;
 				break;
+
+		default:
+				activo = false;
+				cout << "\nCaracter ingresado no valido, por favor intente nuevamente.\n" << endl;
+
 	}
+
+	if(activo){
+		continuar();
+	}
+}
+
+void Menu::continuar(){
+
+	string entrada;
+	cout << "\nPara volver al menu ingrese cualquier letra y presione ENTER." << endl;
+	cin >> entrada;
+	limpiar_pantalla();
+}
+
+void Menu::limpiar_pantalla(){
+
+	cout << string(50, '\n');
+
+    #ifdef linux
+        system("clear");
+    #else
+        system ("cls");
+    #endif
+}
+
+void Menu::imprimir_totales(float &horas, float &costo){
+
+	cout << "\t Tiempo total: " << horas << "hs\t" << "Coste total: $" << costo << endl;
 }
 
 void Menu::consultar_aeropuerto(){
@@ -130,12 +170,20 @@ void Menu::ingresar_aeropuerto(string clave){
 	float superficie;
 	unsigned cant_terminales, dest_nacionales, dest_internacionales;
 
+	cin.clear();
+	cin.ignore(100,'\n');
+
 	cout << "Ingrese: " << endl;
 	cout << "Nombre del Aeropuerto: " << endl;
-	cin >> nombre;
+	getline(cin, nombre);
+
+	cout << "Pais en el que se ubica: " << endl;
+	cin.clear();
+	getline(cin, pais);
 
 	cout << "Nombre de la ciudad: " << endl;
-	cin >> ciudad;
+	cin.clear();
+	getline(cin, ciudad);
 
 	cout << "Superficie: " << endl;
 	cin >> superficie;
