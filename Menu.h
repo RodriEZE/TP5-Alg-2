@@ -54,9 +54,9 @@ class Menu{
 
 		void mostrar_aeropuertos_por_nivel();
 
-		void comenzar_aeropuertos();
+		void ingresar_entrada(string &, string &);
 
-		void comenzar_vuelos();
+		void ingresar_entrada(string &);
 
 		~Menu();
 };

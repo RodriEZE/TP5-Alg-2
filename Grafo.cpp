@@ -173,15 +173,17 @@ void Grafo::comparacion(Vertice* actual, Vertice* adyacente, float &pes){
 
 void Grafo::imprimir_dijkstra(int dest){
 
-	if(distancia[dest] == 0){
-		cout << "No hay conexiones entre los dos aeropuertos" << endl;
-	} else {
+	if((previo[dest]<lista_vertices.size()) && (previo[dest] > -1)){
+
 		this->imprimir_dijkstra(previo[dest]);
-			Vertice* aux_destino = obtener_vertice(dest);
-			Vertice* aux_origen = obtener_vertice(previo[dest]);
-			Arista* aux_a = aux_origen->obtener_arista(aux_destino->obtener_codigo());
-			aux_a->imprimir_datos();
-		}
+		Vertice* aux_destino = obtener_vertice(dest);
+		Vertice* aux_origen = obtener_vertice(previo[dest]);
+		Arista* aux_a = aux_origen->obtener_arista(aux_destino->obtener_codigo());
+		aux_a->imprimir_datos();
+
+	}else if (distancia[dest] == INF){
+		cout << "\nNo existe conexion entre los aeropuertos ingresados." << endl;
+	}
 }
 
 Vertice* Grafo::obtener_vertice(int dest){

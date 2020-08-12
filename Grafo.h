@@ -85,6 +85,8 @@ public:
 	 */
 	Vertice* obtener_vertice(string);
 
+	Vertice* obtener_vertice(int);
+
 	int obtener_previo();
 
 	float obtener_distancia();

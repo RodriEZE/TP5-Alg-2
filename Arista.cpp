@@ -40,7 +40,8 @@ float Arista::obtener_peso_costo(){
 }
 
 void Arista::imprimir_datos(){
-	cout << "Vuelo origen:" << " " << origen << " " << "Vuelo destino:" << " " << destino << " " << "Horas:" << " " << peso_horas << " " << "Costo:" << " " << peso_costo << endl;
+	cout << "     " << origen << "   --------------------->   "<< destino << "  $" << peso_costo << endl;
+	cout << "\t\t  " << peso_horas << "hs"<< endl << endl;
 }
 
 Arista::~Arista(){

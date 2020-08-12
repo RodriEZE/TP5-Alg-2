@@ -12,66 +12,13 @@ Menu::~Menu(){
 }
 
 void Menu::iniciar(){
-	int num;
-	cout << "Aeropuertos (1), Grafos (2)" << endl;
-	cin >> num;
-	if(num == 1)
-		comenzar_aeropuertos();
-	else
-		comenzar_vuelos();
-}
 
-void Menu::comenzar_aeropuertos(){
 	int num=0;
 
 	while( num != FINALIZAR_APLICACION){
 		seleccionar_opcion(num);
 		realizar_accion(num);
 	}
-}
-
-void Menu::comenzar_vuelos(){
-	int num;
-	string origen, destino;
-	cout << "Para imprimir el grafo (1), para eliminar una arista(2), para hallar un vuelo (3), para eliminar vertice(4)" << endl;
-	cin >> num;
-	if(num == 1){
-		archivo_vuelos.imprimir_grafo(&grafo);
-	}
-	else if(num == 2){
-		cout << "Ingrese origen" << endl;
-		cin >> origen;
-		cout << "Ingrese destino" << endl;
-		cin >> destino;
-	//	archivo_vuelos.eliminar_arista(origen, destino);
-	} else if (num == 3){
-		cout << "Ingrese origen" << endl;
-		cin >> origen;
-		cout << "Ingrese destino" << endl;
-		cin >> destino;
-	//	archivo_vuelos.buscar_vuelo(origen, destino);
-	} else if (num==4){
-		cout << "Ingrese origen" << endl;
-		cin >> origen;
-	//	archivo_vuelos.eliminar_vertice(origen);
-	} else{
-
-		cout << "\nOrigen:";
-		cin >>origen;
-
-		grafo.Dijkstra(grafo.obtener_vertice(origen));
-
-		cout << "\nDestino:";
-		cin >> destino;
-
-		Vertice* ver_destino = grafo.obtener_vertice(destino);
-		grafo.imprimir_dijkstra(ver_destino->obtener_id());
-
-
-
-	}
-
-	cout << "\n\nFIN APLICACION";
 }
 
 void Menu::seleccionar_opcion(int &num){
@@ -81,37 +28,55 @@ void Menu::seleccionar_opcion(int &num){
 	cout << "\t(2) Agregar un nuevo aeropuerto" << endl;
 	cout << "\t(3) Eliminar un aeropuerto" << endl;
 	cout << "\t(4) Mostrar todos los aeropuertos ordenados" << endl;
-	cout << "\t(5) Mostrar todos los aeropuertos por nivel" << endl;
-	cout << "\t(6) Finalizar la aplicacion" << endl;
-	cout << "---------------------------------------" << endl;
+	cout << "\t(5) Mostrar todos los aeropuertos por nivel en el arbol" << endl;
+	cout << "\t(6) Imprimir el grafo por pantalla" << endl;
+	cout << "\t(7) Buscar el itinerario de conexiones mas eficiente" << endl;
+	cout << "\t(8) Finalizar la aplicacion" << endl;
+	cout << "---------------------------------------\n" << endl;
+	cout << "IMPUT: ";
 	cin >> num;
+
 }
 
+void Menu::ingresar_entrada(string &origen, string &destino){
 
+	cout << "Ingrese origen: " << endl;
+	cin >> origen;
+	cout << "Ingrese destino: " << endl;
+	cin >> destino;
+}
 
 void Menu::realizar_accion(int num){
+
+	string origen, destino;
+
 	switch(num){
 		case 1:
 				consultar_aeropuerto();
 				break;
-
 		case 2:
 				agregar_aeropuerto();
 				break;
-
-
 		case 3:
 				eliminar_aeropuerto();
 				break;
-
 		case 4:
 				arbol->imprimir_en_orden();
 				break;
 		case 5:
 				mostrar_aeropuertos_por_nivel();
 				break;
-
 		case 6:
+				archivo_vuelos.imprimir_grafo(&grafo);
+				break;
+		case 7:{
+				ingresar_entrada(origen, destino);
+				grafo.Dijkstra(grafo.obtener_vertice(origen));
+				Vertice* ver_destino = grafo.obtener_vertice(destino);
+				grafo.imprimir_dijkstra(ver_destino->obtener_id());
+				break;
+			}
+		case 8:
 				cout << "FIN DE LA APLICACION" << endl;
 				break;
 	}
@@ -207,6 +172,7 @@ void Menu::eliminar_aeropuerto(){
 
 
 void Menu::mostrar_aeropuertos_por_nivel(){
+
 	NodoABB<Aeropuerto*>* nodo;
 	Cola<NodoABB<Aeropuerto*>*> cola;
 	cola.insertar(arbol->obtener_raiz());
