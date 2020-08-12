@@ -121,7 +121,7 @@ int Grafo::obtener_previo(){
 	return *previo;
 }
 
-void Grafo::Dijkstra(Vertice* inicial){
+void Grafo::Dijkstra(Vertice* inicial, int op){
 
 		bool visitado[tam];
 
@@ -136,12 +136,12 @@ void Grafo::Dijkstra(Vertice* inicial){
 
 			if (visitado[actual->obtener_id()]) continue;
 			visitado[actual->obtener_id()] = true;
-			recorrer(actual, visitado);
+			recorrer(actual, visitado, op);
 		}
 
 }
 
-void Grafo::recorrer(Vertice* actual, bool visitado[]){
+void Grafo::recorrer(Vertice* actual, bool visitado[], int op){
 	Vertice* adyacente;
 	list<Arista*> :: iterator iterador;
 	list<Arista*> aux = actual->obtener_lista();
@@ -150,7 +150,7 @@ void Grafo::recorrer(Vertice* actual, bool visitado[]){
 	for(iterador = aux.begin(); iterador != aux.end(); iterador++){
 
 		adyacente = obtener_vertice((*iterador)->obtener_destino());
-		peso = (*iterador)->obtener_peso_horas();
+		peso = (*iterador)->obtener_peso(op);
 
 		if(!visitado[adyacente->obtener_id()]){
 		comparacion(actual, adyacente, peso);

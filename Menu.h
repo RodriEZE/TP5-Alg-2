@@ -107,7 +107,7 @@ class Menu{
 		 * PRE:-
 		 * POST: Ingresa origen y destino de los aeropuertos.
 		 */
-		void ingresar_entrada(string & origen, string & destino);
+		void ingresar_entrada(string & origen, string & destino, int &op);
 
 		//Destructor
 		~Menu();

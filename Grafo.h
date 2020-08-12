@@ -8,7 +8,7 @@
 #include "Vertice.h"
 #include "Cola.h"
 
-#define INF 9999
+#define INF 999999
 #define MAX_V 50
 
 using namespace std;
@@ -108,13 +108,13 @@ public:
 	 * POST: Arma los caminos y pesos minimos hacia todos los vertices
 	 *		 desde el vertice pasado como parametro.
 	 */
-	void Dijkstra(Vertice* inicial);
+	void Dijkstra(Vertice* inicial, int op);
 
 	void imprimir_dijkstra(int);
 
 	string hallar_codigo(int);
 
-	void recorrer(Vertice* actual, bool visitado[]);
+	void recorrer(Vertice* actual, bool visitado[], int op);
 
 
 

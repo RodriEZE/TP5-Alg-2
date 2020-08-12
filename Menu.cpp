@@ -38,18 +38,20 @@ void Menu::seleccionar_opcion(int &num){
 
 }
 
-void Menu::ingresar_entrada(string &origen, string &destino){
+void Menu::ingresar_entrada(string &origen, string &destino, int& op){
 
 	cout << "Ingrese origen: " << endl;
 	cin >> origen;
 	cout << "Ingrese destino: " << endl;
 	cin >> destino;
+	cout << "Ver recorrido minimo por (1) Duracion de vuelo (2) Costo del vuelo" << endl;
+	cin >> op;
 }
 
 void Menu::realizar_accion(int num){
 
 	string origen, destino;
-
+	int op;
 	switch(num){
 		case 1:
 				consultar_aeropuerto();
@@ -70,8 +72,8 @@ void Menu::realizar_accion(int num){
 				archivo_vuelos.imprimir_grafo(&grafo);
 				break;
 		case 7:{
-				ingresar_entrada(origen, destino);
-				grafo.Dijkstra(grafo.obtener_vertice(origen));
+				ingresar_entrada(origen, destino,op);
+				grafo.Dijkstra(grafo.obtener_vertice(origen), op);
 				Vertice* ver_destino = grafo.obtener_vertice(destino);
 				cout << "\nLas conexiones encontradas son:\n" << endl;
 				grafo.imprimir_dijkstra(ver_destino->obtener_id());

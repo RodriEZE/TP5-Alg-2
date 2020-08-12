@@ -70,6 +70,12 @@ public:
 
 	/*
 	 * PRE: -
+	 * POST: Devuelve un float
+	 */
+	float obtener_peso(int);
+
+	/*
+	 * PRE: -
 	 * POST: Imprime por pantalla los atributos del objeto
 	 */
 	void imprimir_datos();

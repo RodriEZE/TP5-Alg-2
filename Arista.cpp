@@ -39,6 +39,17 @@ float Arista::obtener_peso_costo(){
 	return peso_costo;
 }
 
+float Arista::obtener_peso(int op){
+	float peso;
+
+	if (op == 1){
+		peso = peso_horas;
+	}else{
+		peso = peso_costo;
+	}
+	return peso;
+}
+
 void Arista::imprimir_datos(){
 	cout << "     " << origen << "   --------------------->   "<< destino << "  $" << peso_costo << endl;
 	cout << "\t\t  " << peso_horas << "hs"<< endl << endl;
