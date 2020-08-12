@@ -69,23 +69,6 @@ void Grafo::insertar_arista(Vertice* o, Arista* d){
 	 }
 }
 
-void Grafo::eliminar_vertice(string o){
-	Vertice* aux = obtener_vertice(o);
-	list<Vertice*> :: iterator iterador;
-	iterador = lista_vertices.begin();
-	bool existe = false;
-	while( iterador != lista_vertices.end() && existe != true){
-		if(aux->obtener_codigo() == (*iterador)->obtener_codigo()){
-			delete aux;
-			lista_vertices.remove(aux);
-			existe = true;
-		} else {
-			iterador++;
-		}
-	}
-	tam--;
-}
-
 void Grafo::eliminar_todo(){
 	list<Vertice*> :: iterator iterador;
 	iterador = lista_vertices.begin();
@@ -98,14 +81,6 @@ void Grafo::eliminar_todo(){
 	}
 }
 
-bool Grafo::existe_arista(string o, string d){
-	Vertice* aux_partida = obtener_vertice(o);
-	if(aux_partida->existe_arista(d))
-		return true;
-	else
-		return false;
-}
-
 void Grafo::iniciar(float distancia[], bool visitado[], int previo[]){
 
 	for( int i = 0 ; i <= tam ; ++i ){
@@ -114,11 +89,6 @@ void Grafo::iniciar(float distancia[], bool visitado[], int previo[]){
 	    previo[ i ] = -1;
 	    visitado[i]=false;
 	}
-}
-
-int Grafo::obtener_previo(){
-
-	return *previo;
 }
 
 void Grafo::Dijkstra(Vertice* inicial, int op){
