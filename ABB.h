@@ -23,9 +23,7 @@ private:
     void imprimir_en_orden(NodoABB<T> * nodo);
     NodoABB<T>* buscar(NodoABB<T>* nodo, string clave);
     string buscar_min(NodoABB<T>* nodo);
-    T buscar_max(NodoABB<T>* nodo);
     string sucesor(NodoABB<T>* nodo);
-    T predecesor(NodoABB<T>* nodo);
     NodoABB<T>* eliminar(NodoABB<T>* nodo, string clave);
     void eliminar_todo(NodoABB<T>* nodo);
     NodoABB<T>* buscar_padre(NodoABB<T>* nodo, string clave);
@@ -33,48 +31,71 @@ private:
 
 public:
 
-    // Post: Crea un arbol vacio
+    /*
+     * PRE: -
+     * POST: Crea un arbol vaci
+     */
     ABB();
 
-    // Post: Agrega un nodo con dato al arbol. Si el nodo esta vacio
-    // 		 se asigna como la raiz del arbol
+    /*
+     * PRE: Recibe un string y un dato T
+     * POST: Agrega un nodo con dato al arbol. Si el nodo esta vacio se asigna como la raiz del arbol
+     */
+
     void insertar(string clave, T valor);
 
-    // Post: Imprime los datos almacenados en el ABB, de menor a mayor
+    /*
+     * PRE: Existe el arbol
+     * POST: Imprime los datos almacenados en el ABB, de menor a mayor
+     */
     void imprimir_en_orden();
 
-    // Post: Busca un dato concreto en el arbol, si encuentra devuelve el nodo.
+    /*
+     * PRE: Recibe un string
+     * POST: Busca un dato concreto en el arbol, si encuentra devuelve el nodo.
+     */
     NodoABB<T>* buscar(string clave);
 
-    // Post: Busca el padre de una clave determinada en el arbol,
-    // 		 devolviendo el nodo.
-    NodoABB<T>* buscar_padre(string clave);
-
-    // Post: Busca el valor minimo en el ABB
+    /*
+     * PRE: Existe el arbol
+     * POST: Busca el valor minimo en el ABB
+     */
     string buscar_min();
 
-    // Post: Busca el valor maximo en el ABB
-    T buscar_max();
-
-    // Post: Busca el sucesor de un dato concreto en el ABB
+    /*
+     * PRE: Recibe un string
+     * POST: Busca el sucesor de un dato concreto en el ABB
+     */
     string sucesor(string clave);
 
-    // Post: Busca el predecesor de un dato concreto en el ABB
-    T predecesor(string clave);
-
-    // Post: Elimina un dato concreto del ABB
+    /*
+     * PRE: Recibe un string
+     * POST: Elimina un dato concreto del ABB
+     */
     void eliminar(string clave);
 
-    // Post: devuelve la raiz del arbol
+    /*
+     * PRE: Existe el arbol
+     * POST: Devuelve la raiz del arbol
+     */
     NodoABB<T>* obtener_raiz();
 
-    // Post: Si el ABB esta vacio devuelve true, sino false
+    /*
+     * PRE: -
+     * POST:  Si el ABB esta vacio devuelve true, sino false
+     */
     bool vacio();
 
-    // Post: Elimina todos los nodos en el ABB
+    /*
+     * PRE: Existe el arbol
+     * POST: Elimina todos los nodos en el ABB
+     */
     void eliminar_todo();
 
-    // Post: Libera los recursos tomados por el ABB
+    /*
+     * PRE: -
+     * POST: Libera los recursos tomados por el ABB
+     */
     ~ABB<T>();
 
 
@@ -167,23 +188,6 @@ string ABB<T>::buscar_min()
 }
 
 template <class T>
-T ABB<T>::buscar_max(NodoABB<T>* nodo)
-{
-    if(nodo == NULL)
-        return -1;
-    if(nodo->obtener_derecha() == NULL)
-        return nodo->obtener_clave();
-    else
-        return buscar_max(nodo->obtener_derecha());
-}
-
-template <class T>
-T ABB<T>::buscar_max()
-{
-    return buscar_max(this->raiz);
-}
-
-template <class T>
 string ABB<T>::sucesor(NodoABB<T>* nodo)
 {
     if (nodo->obtener_derecha() != NULL)
@@ -211,56 +215,6 @@ string ABB<T>::sucesor(string clave)
     if(dato_nodo == NULL)
         return error;
      return sucesor(dato_nodo);
-}
-
-template <class T>
-NodoABB<T>* ABB<T>::buscar_padre(string clave){
-
-	return this->buscar_padre(this->raiz, clave);
-}
-
-template <class T>
-NodoABB<T>* ABB<T>::buscar_padre(NodoABB<T>* nodo, string clave){
-
-	if (nodo == NULL || nodo->obtener_derecha()->obtener_clave() == clave || nodo->obtener_izquierda()->obtener_clave() == clave)
-	  return nodo;
-
-	if (clave > nodo->obtener_clave())
-	  return buscar_padre(nodo->obtener_derecha(), clave);
-
-	return buscar_padre(nodo->obtener_izquierda(), clave);
-}
-
-
-template <class T>
-T ABB<T>::predecesor(NodoABB<T> * nodo)
-{
-    if (nodo->obtener_izquierda() != NULL)
-    {
-        return buscar_max(nodo->obtener_izquierda());
-    }
-
-    NodoABB<T>* sucesor = NULL;
-    NodoABB<T>* ancesor = this->raiz;
-    while(ancesor != nodo) {
-        if(nodo->obtener_clave() > ancesor->obtener_clave()) {
-            sucesor = ancesor;
-            ancesor = ancesor->obtener_derecha();
-        }
-        else
-            ancesor = ancesor->obtener_izquierda();
-    }
-    return sucesor->obtener_clave();
-}
-
-template <class T>
-T ABB<T>::predecesor(string clave)
-{
-    NodoABB<T>* dato_nodo = this->buscar(this->raiz, clave);
-
-    if(dato_nodo == NULL)
-        return -1;
-    else return predecesor(dato_nodo);
 }
 
 template <class T>

@@ -42,8 +42,10 @@ void Menu::ingresar_entrada(string &origen, string &destino, int& op){
 
 	cout << "Ingrese origen: " << endl;
 	cin >> origen;
+	verificar_codigo(origen);
 	cout << "Ingrese destino: " << endl;
 	cin >> destino;
+	verificar_codigo(destino);
 	cout << "Ver recorrido minimo por (1) Duracion de vuelo (2) Costo del vuelo" << endl;
 	cin >> op;
 }
@@ -98,6 +100,14 @@ void Menu::realizar_accion(int num){
 
 	if(activo){
 		continuar();
+	}
+}
+
+void Menu::verificar_codigo(string& c){
+	if(!grafo.existe_vertice(c)){
+		cout << "El codigo ingresado no existe, por favor ingrese otro" << endl;
+		cin >> c;
+		verificar_codigo(c);
 	}
 }
 

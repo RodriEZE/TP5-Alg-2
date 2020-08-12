@@ -112,13 +112,23 @@ class Menu{
 		 * POST: Ingresa origen y destino de los aeropuertos.
 		 */
 		void ingresar_entrada(string & origen, string & destino, int &op);
+
 		/*
 		 * PRE: Debe haberse usado dijkstra antes y haberse cargado origen y destino
 		 * POST: Imprime el total de horas y dinero para el itinerario elegido.
 		 */
 		void imprimir_totales(float &, float &);
 
-		//Destructor
+		/*
+		 * PRE: Recibe un string
+		 * POST: El string es valido
+		 */
+		void verificar_codigo(string&);
+
+		/*
+		 * PRE: -
+		 * POST: Destruye el objeto
+		 */
 		~Menu();
 };
 
