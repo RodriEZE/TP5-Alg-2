@@ -3,6 +3,8 @@
 
 ArchivoAeropuerto::ArchivoAeropuerto(){
 	archivo_aeropuertos.open(ARCHIVO_AERO);
+
+
 }
 
 void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto*>* arbol){
@@ -25,4 +27,9 @@ void ArchivoAeropuerto::cargar_arbol(ABB<Aeropuerto*>* arbol){
 	}
 }
 
+ArchivoAeropuerto::~ArchivoAeropuerto(){
+
+	archivo_aeropuertos.close();
+
+}
 

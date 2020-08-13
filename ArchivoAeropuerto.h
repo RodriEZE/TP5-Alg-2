@@ -30,6 +30,9 @@ public:
 	 */
 	void cargar_arbol(ABB<Aeropuerto*>* arbol);
 
+	~ArchivoAeropuerto();
+
+
 };
 
 
