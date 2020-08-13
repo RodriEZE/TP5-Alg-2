@@ -50,9 +50,11 @@ public:
 	 */
 	void hallar_aristas(string codigo_partida, string codigo_llegada, float horas_vuelo, float costo_vuelo, Grafo* grafo);
 
-	void eliminar_arista(string o, string d);
-	void eliminar_vertice(string o);
-	void buscar_vuelo(string o, string d);
+	/*
+	 *
+	 * PRE:-
+	 * POST: Imprime los vuelos en orden.
+	 */
 	void imprimir_grafo(Grafo *grafo);
 	~ArchivoVuelos();
 
